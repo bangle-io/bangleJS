@@ -1,10 +1,11 @@
 **NOTE: until we hit v1, expect breaking changes the minor versions (0.x).**
 
-## 0.32.0
+## 0\.32.0
 
 - Dependency updates
 
-## 0.31.6
+## 0\.31.6
+
 - enhancement: `@bangle.dev/markdown` updated the `inlineNodeParser`'s parameter `getTokenDetails` to provide extra information in the callback and you can return in the callback whether a white space needs to be added before or after.
 
 ```js
@@ -26,68 +27,66 @@ inlineNodeParser(md, {
 });
 ```
 
-## 0.31.3
+## 0\.31.3
 
 - enhancement: `@bangle.dev/collab-manager` allows you to manually request (use `collabManager.requestDeleteInstance(...)`) deletion of an instance to save memory.
 
-## 0.31.2
+## 0\.31.2
 
 - enhancement: `@bangle.dev/collab-manager` added two classes `bangle-collab-active` and `bangle-collab-frozen` on editor to indicate whether the editor is active or frozen to reflect the collaboration state.
 
-## 0.31.1
+## 0\.31.1
 
 - enhancement: `@bangle.dev/collab-manager` reduce logging.
 
-## 0.31.0
+## 0\.31.0
 
 - Breaking: `@bangle.dev/collab-client` has been rewritten. Docs are still WIP.
 - New package: `@bangle.dev/collab-comms` for communicating between collab-manager and collab-client. Docs are still WIP.
 - New package: `@bangle.dev/collab-manager` for managing collab-client. Docs are still WIP.
 - Archived: `@bangle.dev/disk` and `@bangle.dev/collab-server` have been archived.
 
-## 0.30.0
+## 0\.30.0
 
-- Breaking: `@bangle.dev/collab` no longer exports `spec`. 
+- Breaking: `@bangle.dev/collab` no longer exports `spec`.
 
-## 0.29.0
+## 0\.29.0
 
 - Breaking: `bangle.dev` now uses typescript version of Prosemirror. This might cause some type errors.
 
 - If you notice errors like `Uncaught Error: Invalid plugin`, please try to make sure you have only 1 version of `prosemirror-view, `prosemirror-state, `prosemirror-transform` in your `node_modules`. You can delete your lock file and re-run `yarn install` to resolve the issue.
 
-## 0.28.10
+## 0\.28.10
 
-
-## 0.28.9
+## 0\.28.9
 
 **@bangle.dev/collab-manager**
 
 - enhancement: export CollabClientRequestType
 
-
-## 0.28.8
+## 0\.28.8
 
 - enhancement: Improve serial execute queue utility
 
-## 0.28.7
+## 0\.28.7
 
 - enhancement: Collab server recognizes when a document is not defined
 
-## 0.28.6
+## 0\.28.6
 
 - Fix: Collab server debounces initialization to prevent overloading of requests.
 
-## 0.28.5
+## 0\.28.5
 
 - All packages now set the `type` to `module`.
 
-## 0.28.4
+## 0\.28.4
 
 **@bangle.dev/react**
 
 - enchancement: Avoids using React.PureComponent due to memory leaks (see https://github.com/facebook/react/issues/18790)
 
-## 0.28.3
+## 0\.28.3
 
 **@bangle.dev/base-components**
 
@@ -97,19 +96,19 @@ inlineNodeParser(md, {
 
 - enhancement: suggestMark disallows any other mark when it is active.
 
-## 0.28.2
+## 0\.28.2
 
 **@bangle.dev/core**
 
 - enhancement: The `editor.destroy()` and `editor.destroyed` use `pmViews` new `isDestroyed` field.
 
-## 0.28.1
+## 0\.28.1
 
 **@bangle.dev/base-components**
 
 - chore: Typing updates
 
-## 0.28.0
+## 0\.28.0
 
 **@bangle.dev/utils**
 
@@ -123,19 +122,19 @@ inlineNodeParser(md, {
 
 - feature: BangleEditorState now accepts prosemirror-drop-cursor options.
 
-## 0.27.6
+## 0\.27.6
 
 **@bangle.dev/tooltip**
 
 - bug: fix issues with Typescript 4.4
 
-## 0.27.4
+## 0\.27.4
 
 **@bangle.dev/react-emoji-suggest**
 
 - feature: allow customizing of emoji palette padding via CSS (https://github.com/bangle-io/bangle.dev/pull/235)
 
-## 0.27.3
+## 0\.27.3
 
 **@bangle.dev/core**
 
@@ -145,11 +144,11 @@ inlineNodeParser(md, {
 
 - bug: Fixed the case when `selectEmoji` command was using incorrect plugin key.
 
-## 0.27.2
+## 0\.27.2
 
 - bug: Fixed situation where ordered list markdown shortcut would not trigger.
 
-## 0.27.0
+## 0\.27.0
 
 **@bangle.dev/react**
 
@@ -159,31 +158,31 @@ inlineNodeParser(md, {
 
 - Feature: Expose `inlineNodeParser` a utility for inline markdown tokens.
 
-## 0.26.5
+## 0\.26.5
 
 - Bug: Typing fixes for suggestions.
 
-## 0.26.4
+## 0\.26.4
 
 - Bug: Typing fixes for keybindings.
 
-## 0.26.3
+## 0\.26.3
 
 - Bug: Typing fixes across multiple packages.
 
-## 0.26.2
+## 0\.26.2
 
 **@bangle.dev/core**
 
 - Feature: Now exports `BaseRawNodeSpec` and `BaseRawMarkSpec`.
 
-## 0.26.1
+## 0\.26.1
 
 **@bangle.dev/react**
 
 - Feature: The react component now allows for forwarding of refs, see [docs](https://bangle.dev/docs/api/react) for example.
 
-## 0.26.0
+## 0\.26.0
 
 **@bangle.dev/core**
 
@@ -213,11 +212,11 @@ import { components } from '@bangle.dev/core';
 import * as components from '@bangle.dev/base-components';
 ```
 
-## 0.25.3
+## 0\.25.3
 
 - `@bangle.dev/pm` package now follows the same versioning as other bangle.dev packages.
 
-## 0.25.0
+## 0\.25.0
 
 **@bangle.dev/core**
 
@@ -227,31 +226,31 @@ import * as components from '@bangle.dev/base-components';
 
 - **Breaking🚨**: The undocumented hook `useSpecRegistry` & `usePlugins` are now removed.
 
-## 0.24.0
+## 0\.24.0
 
 - **Breaking🚨**: package `@bangle.dev/pm-utils` and `@bangle.dev/js-utils` have been merged into a single package `@bangle.dev/utils`.
 
-## 0.23.1
+## 0\.23.1
 
 **@bangle.dev/react-sticker**
 
 - Fixed a problem in prepack script which prevented it from being built.
 
-## 0.23.0
+## 0\.23.0
 
 - All the packages are now written in Typescript.
 
-## 0.22.2
+## 0\.22.2
 
 **@bangle.dev/core**
 
 - A bug in tsconfig was prevent typescript compilation.
 
-## 0.22.1
+## 0\.22.1
 
 - Updates prosemirror package versions.
 
-## 0.22.0
+## 0\.22.0
 
 **@bangle.dev/markdown**
 
@@ -261,14 +260,14 @@ import * as components from '@bangle.dev/base-components';
 
 - **breaking🚨**: Search no longer uses a `caseSensitive` param, users should instead send a query regex `i` flag for case insensitivity.
 
-## 0.21.1
+## 0\.21.1
 
 **@bangle.dev/core**
 
 - **breaking🚨**: All imports are now expected to be done by doing `import { ... } from '@bangle.dev/core'`. Direct file imports like `import { ... } from '@bangle.dev/core/xyz'` are no longer supported.
 - **breaking🚨**: `keymap` is no longer exported, please use `prosemirror-keymap` directly.
 
-## 0.20.0
+## 0\.20.0
 
 **@bangle.dev/tooltip**
 
@@ -282,23 +281,23 @@ import * as components from '@bangle.dev/base-components';
 
 - bug: Fix incorrecting showing the floating menu when double-clicking in the end of a paragraph https://github.com/bangle-io/bangle.dev/pull/212
 
-## 0.19.0
+## 0\.19.0
 
 **@bangle.dev/core**
 
 - We have now added typescript types to the core package. https://github.com/bangle-io/bangle.dev/pull/208
 
-## 0.18.1
+## 0\.18.1
 
 - bug: Fixed package dependency issues.
 
-## 0.18.0
+## 0\.18.0
 
 **@bangle.dev/tooltip**
 
 - We have now added typescript types to the tooltip package.
 
-## 0.17.2
+## 0\.17.2
 
 **@bangle.dev/core**
 
@@ -308,26 +307,26 @@ import * as components from '@bangle.dev/base-components';
 
 - bug: preserve selection if it was provided in a collab session.
 
-## 0.17.1
+## 0\.17.1
 
 **@bangle.dev/collab-sever** , **@bangle.dev/collab-client** **@bangle.dev/disk**
 
 - collab disk improvments https://github.com/bangle-io/bangle.dev/pull/203
 
-## 0.17.0
+## 0\.17.0
 
 **@bangle.dev/collab-sever** , **@bangle.dev/collab-client** **@bangle.dev/disk**
 
 - disk.load is now expected to return a `Node`.
 - collab plugin now accepts `onFatalError`.
 
-## 0.16.2
+## 0\.16.2
 
 **@bangle.dev/core**
 
 - bug: Fixes a problem with `0.16.1`'s `pluginMetadata`.
 
-## 0.16.1
+## 0\.16.1
 
 **@bangle.dev/core**
 
@@ -337,12 +336,12 @@ import * as components from '@bangle.dev/base-components';
 
 - bug: Fixed the font size of the emojis so that in windows they don't get clipped.
 
-## 0.16.0
+## 0\.16.0
 
 - **breaking🚨**: `@bangle.dev/collab-sever` will no longer throw errors in `manager.handleRequest`. You should use `parseCollabResponse` that parses the response and throws `CollabError`.
 - **breaking🚨**: `@bangle.dev/collab-sever` The request type `get_events` is now renamed to `pull_events`.
 
-## 0.15.0
+## 0\.15.0
 
 - **breaking🚨**: `@bangle.dev/collab` is now broken into two packages: `@bangle.dev/collab-sever` & `@bangle.dev/collab-client`.
 
@@ -354,7 +353,7 @@ import * as components from '@bangle.dev/base-components';
 
 - bug: Fixed inserting a horizontal break above a paragraph https://github.com/bangle-io/bangle.dev/pull/194
 
-## 0.14.0
+## 0\.14.0
 
 **@bangle.dev/emoji**
 
@@ -366,7 +365,7 @@ import * as components from '@bangle.dev/base-components';
 - bug: Fixed a bug that backspacing at the start of heading doesn't work correctly https://github.com/bangle-io/bangle.dev/pull/193
 - bug: Improve jumping to start and end of a heading
 
-## 0.13.0
+## 0\.13.0
 
 **@bangle.dev/core**
 
@@ -376,13 +375,13 @@ import * as components from '@bangle.dev/base-components';
 
 - bug: Improve cross browser compatibility where Error.captureStackTrace is not available https://github.com/bangle-io/bangle.dev/pull/183
 
-## 0.12.1
+## 0\.12.1
 
 **@bangle.dev/core**
 
 - bug: Fixed a bug when splitting a checked todo item from the middle of the text results in a new checked item https://github.com/bangle-io/bangle.dev/issues/181
 
-## 0.12.0
+## 0\.12.0
 
 **@bangle.dev/core**
 
@@ -392,40 +391,40 @@ import * as components from '@bangle.dev/base-components';
 
 - bug: fixed a bug in which the module was accessing a field on an undefined.
 
-## 0.11.0
+## 0\.11.0
 
 **@bangle.dev/wiki-link**
 
 - 🎉 We have a new component which allows for wiki style links. It also supports parsing and serializing the format into markdown.
 
-## 0.10.5
+## 0\.10.5
 
 **@bangle.dev/core**
 
 - chore: Export the list item commands `insertEmptySiblingListAbove` & `insertEmptySiblingListBelow`.
 
-## 0.10.4
+## 0\.10.4
 
 **@bangle.dev/core**
 
 - chore: added insert para above/below commands to blockquote & heading.
 - chore: export `prosemirror-keymap` via `@bangle.dev/core/prosemirror/keymap`.
 
-## 0.10.3
+## 0\.10.3
 
 **@bangle.dev/core**
 
 - bug: `editorStateCounter` was missing in bangle.dev/core.
 
-## 0.10.2
+## 0\.10.2
 
 - chore: doc updates and cleanup
 
-## 0.10.1
+## 0\.10.1
 
 - chore: doc updates and cleanup
 
-## 0.10.0
+## 0\.10.0
 
 **@bangle.dev/core**
 
@@ -445,14 +444,14 @@ const { doc, heading } = components;
 import doc from '@bangle.dev/core/components/doc';
 ```
 
-## 0.9.1
+## 0\.9.1
 
 **@bangle.dev/tooltip**
 
 - bug: suggest tooltip now resets counter on hide.
 - feat: triggers can now be more than one characters.
 
-## 0.9.0
+## 0\.9.0
 
 **@bangle.dev/core**
 
@@ -462,7 +461,7 @@ import doc from '@bangle.dev/core/components/doc';
 
 - feat: Markdown parsing now remembers whether lists are tightly spaced or not.
 
-## 0.8.0
+## 0\.8.0
 
 **@bangle.dev/core**
 
@@ -473,19 +472,19 @@ import doc from '@bangle.dev/core/components/doc';
 
 - bug: disable menu buttons when view is not editable
 
-## 0.7.2
+## 0\.7.2
 
 **@bangle.dev/react-emoji-suggest**
 
 - bug: stray console statement
 
-## 0.7.1
+## 0\.7.1
 
 **@bangle.dev/table**
 
 - bug: Renamed table.css to style.css
 
-## 0.7.0
+## 0\.7.0
 
 **@bangle.dev/markdown**
 
@@ -495,7 +494,7 @@ import doc from '@bangle.dev/core/components/doc';
 
 - NEW package for dealing with tables!
 
-## 0.6.0
+## 0\.6.0
 
 **@bangle.dev/react-menu**
 
@@ -505,37 +504,37 @@ import doc from '@bangle.dev/core/components/doc';
 
 - bug: When opening a file with empty list item crashed the editor.
 
-## 0.5.1
+## 0\.5.1
 
 **@bangle.dev/core**
 
 - bug: Fix css settings that were being applied globally instead of scoped to the editor.
 - bug: Fix css margins for the first child of the editor.
 
-## 0.5.0
+## 0\.5.0
 
 **@bangle.dev/react-menu**
 
 - feat: Added an undo and redo button.
 
-## 0.4.1
+## 0\.4.1
 
 **@bangle.dev/core**
 
 - deprecation: `BangleEditorState` expects `plugins` named parameter to be a function. Previous usage of an array of plugins is now deprecated.
 
-## 0.4.0
+## 0\.4.0
 
 - bug: Fix cyclic dependencies across the project.
 - chore: Moved away from `export * as xyz` syntax as it causes problem with certain bundlers.
 
-## 0.3.3
+## 0\.3.3
 
 **@bangle.dev/core**
 
 - bug: Fixed issue in collab by checking the position when restarting.
 
-## 0.3.2
+## 0\.3.2
 
 **@bangle.dev/core**
 
@@ -543,13 +542,13 @@ import doc from '@bangle.dev/core/components/doc';
 - bug: Fixed when pressing an enter on a checked todo created another checked todo list.
 - bug: Fixed issue in collab by checking the position when restarting.
 
-## 0.3.1
+## 0\.3.1
 
 **@bangle.dev/core**
 
 - bug: Fixed some bugs which cause non-intuitive toggling between todo bullet lists and regular bullet lists.
 
-## 0.3.0
+## 0\.3.0
 
 **@bangle.dev/core**
 
@@ -557,13 +556,13 @@ import doc from '@bangle.dev/core/components/doc';
 
 - **breaking**: todoList and todoItem no longer exist and now have been implemented with bulletList and listItem with the node attribute `todoChecked`.
 
-## 0.2.1
+## 0\.2.1
 
 **@bangle.dev/core**
 
 - patch: expose `flattenFragmentJSON` in heading component.
 
-## 0.2.0
+## 0\.2.0
 
 **@bangle.dev/core**
 

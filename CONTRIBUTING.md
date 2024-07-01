@@ -39,7 +39,6 @@ For templating we use [handlebars](https://handlebarsjs.com) and a configuration
 
 - Run `release-packages` for a regular release or `release-packages-alpha` for a pre-release.
 
-
 ## Directory Structure
 
 The packages are divided in the following manner:
