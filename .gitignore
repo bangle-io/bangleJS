@@ -7,20 +7,9 @@ coverage
 .env.development.local
 .env.test.local
 .env.production.local
-yarn-debug.log*
-yarn-error.log*
-
-
-tooling/e2e-tests/build
-
-.yarn/*
-!.yarn/cache
-!.yarn/releases
-!.yarn/plugins
-!.yarn/sdks
-!.yarn/versions
-yarn-error.log
-
+.env
+.env.*
+.aider*
 
 dist
 

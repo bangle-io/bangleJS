@@ -1,91 +1,87 @@
 {
-    "$schema": "https://biomejs.dev/schemas/1.9.3/schema.json",
-    "files": {
-        "ignore": [
-            "missing-test-types.d.ts"
-        ]
-    },
-    "vcs": {
-        "enabled": true,
-        "clientKind": "git",
-        "useIgnoreFile": true
-    },
-    "formatter": {
-        "enabled": true,
-        "formatWithErrors": false,
-        "indentStyle": "space",
-        "indentWidth": 2,
-        "lineEnding": "lf",
-        "lineWidth": 80,
-        "attributePosition": "auto",
-        "ignore": [
-            "**/.cache",
-            "**/.DS_Store",
-            "**/.idea",
-            "**/.vscode",
-            "**/.yarnrc.yml",
-            "**/*.hbs",
-            "**/*.md",
-            "**/build",
-            "**/CHANGELOG.md",
-            "**/coverage",
-            "**/dist",
-            "**/jsconfig-base.json",
-            "**/jsconfig.json",
-            "**/node_modules",
-            "**/npm-debug.log",
-            "**/tsconfig.json"
-        ]
-    },
-    "organizeImports": {
-        "enabled": true
-    },
-    "linter": {
-        "enabled": true,
-        "rules": {
-            "recommended": true,
-            "style": {
-                "useTemplate": "info"
-            },
-            "suspicious": {
-                "noExplicitAny": "warn"
-            },
-            "nursery": {
-                "useSortedClasses": "error"
-            },
-            "correctness": {
-                "noUnusedVariables": "warn"
-            },
-            "complexity": {
-                "noForEach": "off"
-            }
-        }
-    },
-    "javascript": {
-        "jsxRuntime": "reactClassic",
-        "formatter": {
-            "jsxQuoteStyle": "double",
-            "quoteProperties": "asNeeded",
-            "trailingCommas": "all",
-            "semicolons": "always",
-            "arrowParentheses": "always",
-            "bracketSpacing": true,
-            "bracketSameLine": false,
-            "quoteStyle": "single",
-            "attributePosition": "auto"
-        }
-    },
-    "overrides": [
-        {
-            "include": [
-                ".vscode/**"
-            ],
-            "json": {
-                "parser": {
-                    "allowComments": true,
-                    "allowTrailingCommas": true
-                }
-            }
-        }
+  "$schema": "https://biomejs.dev/schemas/1.9.3/schema.json",
+  "files": {
+    "ignore": ["missing-test-types.d.ts"]
+  },
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 80,
+    "attributePosition": "auto",
+    "ignore": [
+      "**/.cache",
+      "**/.DS_Store",
+      "**/.idea",
+      "**/.vscode",
+      "**/.yarnrc.yml",
+      "**/*.hbs",
+      "**/*.md",
+      "**/build",
+      "**/CHANGELOG.md",
+      "**/coverage",
+      "**/dist",
+      "**/jsconfig-base.json",
+      "**/jsconfig.json",
+      "**/node_modules",
+      "**/npm-debug.log",
+      "**/tsconfig.json"
     ]
+  },
+  "organizeImports": {
+    "enabled": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "style": {
+        "useTemplate": "info"
+      },
+      "suspicious": {
+        "noExplicitAny": "warn"
+      },
+      "nursery": {
+        "useSortedClasses": "error"
+      },
+      "correctness": {
+        "noUnusedVariables": "warn"
+      },
+      "complexity": {
+        "noForEach": "off"
+      }
+    }
+  },
+  "javascript": {
+    "jsxRuntime": "reactClassic",
+    "formatter": {
+      "jsxQuoteStyle": "double",
+      "quoteProperties": "asNeeded",
+      "trailingCommas": "all",
+      "semicolons": "always",
+      "arrowParentheses": "always",
+      "bracketSpacing": true,
+      "bracketSameLine": false,
+      "quoteStyle": "single",
+      "attributePosition": "auto"
+    }
+  },
+  "overrides": [
+    {
+      "include": [".vscode/**"],
+      "json": {
+        "parser": {
+          "allowComments": true,
+          "allowTrailingCommas": true
+        }
+      }
+    }
+  ]
 }
