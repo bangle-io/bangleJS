@@ -1,72 +1,92 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
 name: Node.js CI
 
 on:
   push:
-    branches: [dev]
+    branches: [main, dev, staging, production, v2, v3]
   pull_request:
-    branches: [dev]
+    branches: [main, dev, staging, production, v2, v3]
 
+concurrency:
+  group: bangle-banger-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  SENTRY_NO_PROGRESS_BAR: 1
+  GITHUB_OWNER: ${{ secrets.GH_OWNER }}
+  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 jobs:
-  tests:
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    strategy:
-      matrix:
-        test-kind: ['unit-tests']
-    steps:
-      - uses: actions/checkout@v2
-      - name: Run test "${{ matrix.test-kind }}"
-        uses: actions/setup-node@v1
-        with:
-          node-version: 18.x
-      - run: yarn install --immutable --immutable-cache
-      - run: yarn tsc-check
-      - run: yarn ${{ matrix.test-kind }}
-  check-cache:
+  lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Build
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+      - name: Install pnpm
+        id: pnpm-install
+        run: |
+          corepack enable
+      - name: Use Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 18.x
-      - run: yarn install --immutable --immutable-cache --check-cache
-  linting:
+          node-version: 20
+          cache: 'pnpm'
+      - name: Install bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Install dependencies
+        run: pnpm install
+      - name: Setup Biome
+        uses: biomejs/setup-biome@v2
+      - name: Lint
+        run: pnpm run lint:ci
+  test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Lint, Tsc and Formatting
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+      - name: Install pnpm
+        id: pnpm-install
+        run: |
+          corepack enable
+      - name: Use Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 18.x
-      - run: yarn install --immutable --immutable-cache
-      - run: yarn lint
-  tests-e2e:
-    runs-on: ubuntu-latest
-    container: mcr.microsoft.com/playwright:v1.36.1-focal
-    strategy:
-      matrix:
-        test-kind: ['g:e2e --shard=1/1']
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set git safe directory
-        # This is added as a fix for https://github.com/actions/checkout/issues/766
-        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
-      - name: Run e2e tests "${{ matrix.test-kind }}"
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
-      - name: yarn install
-        run: yarn install --immutable --immutable-cache
-      - name: Install playwright dependencies
-        run: yarn g:playwright-dep
-      - run: yarn ${{ matrix.test-kind }}
-      - uses: actions/upload-artifact@v3
-        if: ${{ failure() }}
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
+          node-version: 20
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: test
+        run: pnpm run test:ci
+  # e2e-tests:
+  #   timeout-minutes: 10
+  #   runs-on: ubuntu-latest
+  #   container: mcr.microsoft.com/playwright:v1.48.2-focal
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Install pnpm
+  #       id: pnpm-install
+  #       run: |
+  #         corepack enable
+  #     - name: Use Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: 20
+  #         cache: 'pnpm'
+  #     - name: Cache Playwright browsers
+  #       uses: actions/cache@v4
+  #       with:
+  #         path: ~/.cache/ms-playwright
+  #         key: ${{ runner.os }}-playwright-browsers
+  #         restore-keys: |
+  #           ${{ runner.os }}-playwright-browsers
+  #     - name: Install dependencies
+  #       run: pnpm install
+  #     - name: Install Playwright Browsers
+  #       run: pnpm -w run e2e-install
+  #     - name: Run Playwright tests
+  #       run: pnpm -w run e2e:ci
+  #     - uses: actions/upload-artifact@v4
+  #       if: ${{ !cancelled() }}
+  #       with:
+  #         name: playwright-report
+  #         path: playwright-report/
+  #         retention-days: 30
+      

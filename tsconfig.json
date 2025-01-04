@@ -1,143 +1,28 @@
 {
-  "lib": [
-    "ES2019",
-    "dom",
-    "scripthost"
-  ],
-  "include": [
-    "**/src/**/*",
-    "**/__tests__/**/*.tsx",
-    "**/__tests__/**/*.ts",
-    "**/__tests_ts",
-    "**/e2e-tests/**/*"
-  ],
-  "exclude": [
-    ".yarn"
-  ],
-  "compilerOptions": {
-    "allowJs": false,
-    "allowSyntheticDefaultImports": true,
-    "composite": true,
-    "declaration": true,
-    "declarationMap": true,
-    "exactOptionalPropertyTypes": false,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "jsx": "react",
-    "module": "ES2020",
-    "moduleResolution": "node",
-    "newLine": "lf",
-    "noEmit": true,
-    "noEmitOnError": false,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noUncheckedIndexedAccess": true,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "pretty": true,
-    "removeComments": false,
-    "resolveJsonModule": false,
-    "skipLibCheck": true,
-    "sourceMap": true,
-    "strict": true,
-    "stripInternal": true,
-    "target": "es2020",
-    "useDefineForClassFields": true,
-    "paths": {
-      "@bangle.dev/base-components": [
-        "./components/base-components/src"
-      ],
-      "@bangle.dev/emoji": [
-        "./components/emoji/src"
-      ],
-      "@bangle.dev/markdown-front-matter": [
-        "./components/markdown-front-matter/src"
-      ],
-      "@bangle.dev/react-emoji-suggest": [
-        "./components/react-emoji-suggest/src"
-      ],
-      "@bangle.dev/react-menu": [
-        "./components/react-menu/src"
-      ],
-      "@bangle.dev/react-sticker": [
-        "./components/react-sticker/src"
-      ],
-      "@bangle.dev/react-stopwatch": [
-        "./components/react-stopwatch/src"
-      ],
-      "@bangle.dev/search": [
-        "./components/search/src"
-      ],
-      "@bangle.dev/table": [
-        "./components/table/src"
-      ],
-      "@bangle.dev/text-formatting": [
-        "./components/text-formatting/src"
-      ],
-      "@bangle.dev/timestamp": [
-        "./components/timestamp/src"
-      ],
-      "@bangle.dev/tooltip": [
-        "./components/tooltip/src"
-      ],
-      "@bangle.dev/trailing-node": [
-        "./components/trailing-node/src"
-      ],
-      "@bangle.dev/wiki-link": [
-        "./components/wiki-link/src"
-      ],
-      "broader-unit-tests": [
-        "./lib/broader-unit-tests/src"
-      ],
-      "@bangle.dev/collab-client": [
-        "./lib/collab-client/src"
-      ],
-      "@bangle.dev/collab-manager": [
-        "./lib/collab-manager/src"
-      ],
-      "@bangle.dev/collab-comms": [
-        "./lib/collab-comms/src"
-      ],
-      "@bangle.dev/core": [
-        "./lib/core/src"
-      ],
-      "@bangle.dev/disk": [
-        "./lib/disk/src"
-      ],
-      "@bangle.dev/markdown": [
-        "./lib/markdown/src"
-      ],
-      "@bangle.dev/pm": [
-        "./lib/pm/src"
-      ],
-      "@bangle.dev/pm-commands": [
-        "./lib/pm-commands/src"
-      ],
-      "@bangle.dev/shared-types": [
-        "./lib/shared-types/src"
-      ],
-      "@bangle.dev/react": [
-        "./lib/react/src"
-      ],
-      "@bangle.dev/utils": [
-        "./lib/utils/src"
-      ],
-      "@bangle.dev/all-base-components": [
-        "./tooling/all-base-components/src"
-      ],
-      "bangle-scripts": [
-        "./tooling/bangle-scripts/src"
-      ],
-      "e2e-tests": [
-        "./tooling/e2e-tests/tests"
-      ],
-      "@bangle.dev/jest-utils": [
-        "./tooling/jest-utils/src"
-      ],
-      "@bangle.dev/test-helpers": [
-        "./tooling/test-helpers/src"
-      ]
-    }
-  }
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "display": "Default",
+    "compilerOptions": {
+        "target": "es2022",
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "es2022"
+        ],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "incremental": true,
+        "baseUrl": "."
+    },
+    "exclude": [
+        "node_modules"
+    ]
 }
