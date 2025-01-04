@@ -1,7 +1,11 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.9.3/schema.json",
   "files": {
-    "ignore": ["missing-test-types.d.ts"]
+    "ignore": [
+      "missing-test-types.d.ts",
+      "packages/tooling/tsup-config",
+      "packages/tooling/tsconfig"
+    ]
   },
   "vcs": {
     "enabled": true,
@@ -75,7 +79,9 @@
   },
   "overrides": [
     {
-      "include": [".vscode/**"],
+      "include": [
+        ".vscode/**"
+      ],
       "json": {
         "parser": {
           "allowComments": true,

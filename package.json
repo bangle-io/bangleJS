@@ -1,19 +1,24 @@
 {
   "name": "@bangle.dev/banger-editor-root",
   "version": "1.0.0",
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@manypkg/cli": "^0.23.0",
+    "@types/node": "^22.10.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "manypkg": {
+    "defaultBranch": "main",
+    "workspaceProtocol": "allow"
+  },
+  "packageManager": "pnpm@9.15.0",
   "private": true,
   "scripts": {
+    "lint": "pnpm biome check",
     "lint:ci": "pnpm run custom-validation && pnpm run typecheck && pnpm biome ci .  --diagnostic-level=error",
     "lint:fix": "pnpm biome check --fix",
-    "lint": "pnpm biome check",
     "test:ci": "pnpm vitest run",
     "typecheck": "tsc -b"
-  },
-  "devDependencies": {
-    "@types/node": "^20.0.0",
-    "typescript": "^5.7.2",
-    "vitest": "^2.1.8",
-    "@biomejs/biome": "1.9.4"
-  },
-  "packageManager": "pnpm@9.15.0"
+  }
 }

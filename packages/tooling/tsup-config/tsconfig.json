@@ -1,0 +1,8 @@
+{
+  "extends": "tsconfig/library.json",
+  "include": ["."],
+  "compilerOptions": {
+    "checkJs": true
+  },
+  "exclude": ["dist", "build", "node_modules"]
+}
