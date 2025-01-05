@@ -7,12 +7,7 @@
     "url": "http://github.com/kepta"
   },
   "description": "A modern collection of ProseMirror packages for building powerful editing experiences",
-  "keywords": [
-    "prosemirror",
-    "rich text editor",
-    "editor",
-    "typescript"
-  ],
+  "keywords": ["prosemirror", "rich text editor", "editor", "typescript"],
   "homepage": "https://bangle.io",
   "bugs": {
     "url": "https://github.com/bangle-io/banger-editor/issues"
@@ -28,10 +23,7 @@
     "access": "public"
   },
   "main": "./src/index.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
+  "files": ["dist", "src"],
   "scripts": {
     "prepublishOnly": "tsx ../../packages/tooling/scripts/prepublish-run.ts",
     "postpublish": "tsx ../../packages/tooling/scripts/postpublish-run.ts",
@@ -63,6 +55,37 @@
     "prosemirror-test-builder": "*",
     "prosemirror-transform": "*",
     "prosemirror-view": "*"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./active-node": "./src/active-node.ts",
+    "./base": "./src/base.ts",
+    "./blockquote": "./src/blockquote.ts",
+    "./bold": "./src/bold.ts",
+    "./code": "./src/code.ts",
+    "./code-block": "./src/code-block.ts",
+    "./common": "./src/common/index.ts",
+    "./drag": "./src/drag/index.ts",
+    "./drop-gap-cursor": "./src/drop-gap-cursor.ts",
+    "./hard-break": "./src/hard-break.ts",
+    "./heading": "./src/heading.ts",
+    "./history": "./src/history.ts",
+    "./horizontal-rule": "./src/horizontal-rule.ts",
+    "./hover": "./src/hover.ts",
+    "./image": "./src/image.ts",
+    "./italic": "./src/italic.ts",
+    "./link": "./src/link/index.ts",
+    "./list": "./src/list.ts",
+    "./package.json": "./package.json",
+    "./paragraph": "./src/paragraph.ts",
+    "./placeholder": "./src/placeholder.ts",
+    "./pm": "./src/pm/index.ts",
+    "./pm-utils": "./src/pm-utils/index.ts",
+    "./store": "./src/store/index.ts",
+    "./strike": "./src/strike.ts",
+    "./suggestions": "./src/suggestions/index.ts",
+    "./test-helpers": "./src/test-helpers/index.ts",
+    "./underline": "./src/underline.ts"
   },
   "peerDependenciesMeta": {
     "orderedmap": {
