@@ -69,7 +69,7 @@ export async function buildDistExportMap(
       set(exportMap, [exportKey, 'import'], `./${dirName}/${filePath}`);
       set(exportMap, [exportKey, 'default'], `./${dirName}/${filePath}`);
     } else if (isRequire(filePath)) {
-      set(exportMap, [exportKey, 'require'], `./${dirName}/${filePath}`);
+      // set(exportMap, [exportKey, 'require'], `./${dirName}/${filePath}`);
     }
   });
 
