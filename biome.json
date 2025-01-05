@@ -4,7 +4,8 @@
     "ignore": [
       "missing-test-types.d.ts",
       "packages/tooling/tsup-config",
-      "packages/tooling/tsconfig"
+      "packages/tooling/tsconfig",
+      ".vscode/settings.json"
     ]
   },
   "vcs": {
@@ -77,17 +78,4 @@
       "attributePosition": "auto"
     }
   },
-  "overrides": [
-    {
-      "include": [
-        ".vscode/**"
-      ],
-      "json": {
-        "parser": {
-          "allowComments": true,
-          "allowTrailingCommas": true
-        }
-      }
-    }
-  ]
 }

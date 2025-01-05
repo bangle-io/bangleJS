@@ -1,5 +1,5 @@
 {
-  "name": "@bangle.dev/scripts",
+  "name": "@bangle.dev/packager",
   "version": "1.0.0",
   "dependencies": {
     "@jest/globals": "^29.7.0",
@@ -14,8 +14,13 @@
     "prettier": "3.4.2",
     "syncpack": "^13.0.0",
     "ts-node": "^10.9.2",
+    "type-fest": "^4.31.0",
     "zod": "^3.24.1",
-    "@bangle.dev/packager": "workspace:*"
+    "@manypkg/get-packages": "^2.2.2",
+    "@manypkg/find-root": "^2.2.3",
+    "@manypkg/tools": "^1.1.2",
+    "lodash": "^4.17.21",
+    "@types/lodash": "^4.17.7"
   },
   "main": "src/index.ts",
   "module": "src/index.ts",

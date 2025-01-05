@@ -33,8 +33,8 @@
   },
   "homepage": "https://bangle.io",
   "license": "AGPL-3.0-or-later",
-  "main": "src/index.ts",
-  "module": "src/index.ts",
+  "main": "",
+  "module": "",
   "publishConfig": {
     "access": "public"
   },
@@ -43,5 +43,9 @@
     "url": "https://github.com/bangle-io/banger-editor.git",
     "directory": "packages/prosemirror-all"
   },
-  "scripts": {}
+  "scripts": {},
+  "types": "",
+  "exports": {
+    "./package.json": "./package.json"
+  }
 }
