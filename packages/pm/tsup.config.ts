@@ -1,14 +1,17 @@
+import path from 'node:path';
 import { defineConfig } from 'tsup';
-import { baseConfig } from 'tsup-config';
+import { baseConfig, getPackager } from 'tsup-config';
+export default defineConfig(async () => {
+  const pkgJson = require('./package.json');
+  const name = pkgJson.name;
+  const { Packager, buildExportMap } = await getPackager();
+  const packager = await new Packager({}).init();
+  const entry = await packager.generateTsupEntry(name);
 
-const pkgJson = require('./package.json');
-const tsupEntry = pkgJson.bangleConfig.tsupEntry;
+  console.log(await buildExportMap(path.join(import.meta.dirname, 'dist')));
 
-if (!tsupEntry || Object.keys(tsupEntry).length === 0) {
-  throw new Error('tsupEntry is not defined in package.json');
-}
-
-export default defineConfig({
-  ...baseConfig,
-  entry: tsupEntry,
+  return {
+    ...baseConfig,
+    entry: entry,
+  };
 });

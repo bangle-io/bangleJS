@@ -22,5 +22,9 @@
   "main": "src/index.ts",
   "module": "src/index.ts",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "bin": {
+    "release-package-set-version": "./release-package-set-version.ts",
+    "release-package-publish": "./release-package-publish.ts"
+  }
 }

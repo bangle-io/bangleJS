@@ -22,8 +22,8 @@
     "lodash": "^4.17.21",
     "@types/lodash": "^4.17.7"
   },
-  "main": "src/index.ts",
-  "module": "src/index.ts",
+  "main": "index.ts",
+  "module": "index.ts",
   "private": true,
   "type": "module"
 }

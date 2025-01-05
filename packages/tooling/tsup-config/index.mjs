@@ -1,11 +1,16 @@
+import { tsImport } from 'tsx/esm/api';
+
 /**
  * @type {import('tsup').Options}
  */
 export const baseConfig = {
   format: ['esm', 'cjs'],
-  entry: ['src/index.ts'],
-  splitting: false,
+  splitting: true,
   dts: true,
   clean: true,
   shims: false,
 };
+
+export const getPackager = async () => {
+  return (await tsImport('@bangle.dev/packager', import.meta.url))
+}

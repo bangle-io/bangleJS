@@ -1,6 +1,5 @@
 {
   "name": "@bangle.dev/pm",
-  "type": "module",
   "version": "1.0.0",
   "authors": [
     {
@@ -18,13 +17,16 @@
     "url": "https://github.com/bangle-io/banger-editor.git",
     "directory": "packages/pm"
   },
+  "type": "module",
   "publishConfig": {
     "access": "public"
   },
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "build": "tsup --config tsup.config.ts",
     "build:watch": "tsup --config tsup.config.ts --watch"
@@ -49,7 +51,8 @@
     "prosemirror-view": "^1.37.1",
     "tsconfig": "workspace:*",
     "tsup": "^8.3.5",
-    "tsup-config": "workspace:*"
+    "tsup-config": "workspace:*",
+    "@bangle.dev/packager": "workspace:*"
   },
   "peerDependencies": {
     "orderedmap": "*",
@@ -144,24 +147,6 @@
       "require": "./dist/view.js"
     }
   },
-  "bangleConfig": {
-    "tsupEntry": {
-      "index": "src/index.ts",
-      "commands": "src/commands/index.ts",
-      "dropcursor": "src/dropcursor/index.ts",
-      "flat-list": "src/flat-list/index.ts",
-      "gapcursor": "src/gapcursor/index.ts",
-      "history": "src/history/index.ts",
-      "inputrules": "src/inputrules/index.ts",
-      "keymap": "src/keymap/index.ts",
-      "model": "src/model/index.ts",
-      "orderedmap": "src/orderedmap/index.ts",
-      "schema-basic": "src/schema-basic/index.ts",
-      "state": "src/state/index.ts",
-      "transform": "src/transform/index.ts",
-      "view": "src/view/index.ts"
-    }
-  },
   "banglePackageConfig": {
     "env": "universal",
     "kind": "js-util"
@@ -205,6 +190,25 @@
     },
     "prosemirror-view": {
       "optional": false
+    }
+  },
+  "bangleConfig": {
+    "tsupEntry": {
+      "index": "src/index.ts",
+      "commands": "src/commands/index.ts",
+      "dropcursor": "src/dropcursor/index.ts",
+      "flat-list": "src/flat-list/index.ts",
+      "gapcursor": "src/gapcursor/index.ts",
+      "history": "src/history/index.ts",
+      "inputrules": "src/inputrules/index.ts",
+      "keymap": "src/keymap/index.ts",
+      "kushan": "src/kushan.ts",
+      "model": "src/model/index.ts",
+      "orderedmap": "src/orderedmap/index.ts",
+      "schema-basic": "src/schema-basic/index.ts",
+      "state": "src/state/index.ts",
+      "transform": "src/transform/index.ts",
+      "view": "src/view/index.ts"
     }
   }
 }

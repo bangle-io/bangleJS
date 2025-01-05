@@ -13,7 +13,7 @@
       "DOM"
     ],
     "isolatedModules": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noEmit": true,
     "noEmitOnError": false,
     "noFallthroughCasesInSwitch": true,
