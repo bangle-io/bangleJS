@@ -9,6 +9,7 @@ export * from 'prosemirror-model';
 export * from 'prosemirror-state';
 export * from 'prosemirror-transform';
 export * from 'prosemirror-view';
+export { default as OrderedMap } from 'orderedmap';
 export {
   nodes as schemaBasicNodes,
   marks as schemaBasicMarks,
