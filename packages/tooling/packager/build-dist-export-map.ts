@@ -49,6 +49,8 @@ export async function buildDistExportMap(
     './package.json': './package.json',
   };
 
+  const dirName = path.basename(distDir);
+
   // Process each file and map it to the appropriate export path
   filteredFiles.forEach((filePath) => {
     const parsed = path.parse(filePath);
@@ -62,11 +64,11 @@ export async function buildDistExportMap(
     const exportKey = entryPoint === 'index' ? '.' : `./${entryPoint}`;
 
     if (isTypes(filePath)) {
-      set(exportMap, [exportKey, 'types'], `./${filePath}`);
+      set(exportMap, [exportKey, 'types'], `./${dirName}/${filePath}`);
     } else if (isImport(filePath)) {
-      set(exportMap, [exportKey, 'import'], `./${filePath}`);
+      set(exportMap, [exportKey, 'import'], `./${dirName}/${filePath}`);
     } else if (isRequire(filePath)) {
-      set(exportMap, [exportKey, 'require'], `./${filePath}`);
+      set(exportMap, [exportKey, 'require'], `./${dirName}/${filePath}`);
     }
   });
 
@@ -77,9 +79,9 @@ export async function buildDistExportMap(
   });
 
   const result = {
-    main: './index.js',
-    module: './index.mjs',
-    types: './index.d.ts',
+    main: `./${dirName}/index.js`,
+    module: `./${dirName}/index.mjs`,
+    types: `./${dirName}/index.d.ts`,
     exports: exportMap,
   };
 
