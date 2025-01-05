@@ -27,9 +27,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./src/index.ts",
   "files": [
     "dist",
     "src"
@@ -81,190 +79,35 @@
     "prosemirror-view": "*"
   },
   "exports": {
-    ".": {
-      "require": "./dist/index.cjs",
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
-    },
-    "./active-node": {
-      "require": "./dist/active-node.cjs",
-      "types": "./dist/active-node.d.ts",
-      "import": "./dist/active-node.js",
-      "default": "./dist/active-node.js"
-    },
-    "./base": {
-      "require": "./dist/base.cjs",
-      "types": "./dist/base.d.ts",
-      "import": "./dist/base.js",
-      "default": "./dist/base.js"
-    },
-    "./blockquote": {
-      "require": "./dist/blockquote.cjs",
-      "types": "./dist/blockquote.d.ts",
-      "import": "./dist/blockquote.js",
-      "default": "./dist/blockquote.js"
-    },
-    "./bold": {
-      "require": "./dist/bold.cjs",
-      "types": "./dist/bold.d.ts",
-      "import": "./dist/bold.js",
-      "default": "./dist/bold.js"
-    },
-    "./code": {
-      "require": "./dist/code.cjs",
-      "types": "./dist/code.d.ts",
-      "import": "./dist/code.js",
-      "default": "./dist/code.js"
-    },
-    "./code-block": {
-      "require": "./dist/code-block.cjs",
-      "types": "./dist/code-block.d.ts",
-      "import": "./dist/code-block.js",
-      "default": "./dist/code-block.js"
-    },
-    "./collection-CwcVcnj1": {
-      "types": "./dist/collection-CwcVcnj1.d.ts"
-    },
-    "./common": {
-      "require": "./dist/common.cjs",
-      "types": "./dist/common.d.ts",
-      "import": "./dist/common.js",
-      "default": "./dist/common.js"
-    },
-    "./drag": {
-      "require": "./dist/drag.cjs",
-      "types": "./dist/drag.d.ts",
-      "import": "./dist/drag.js",
-      "default": "./dist/drag.js"
-    },
-    "./drop-gap-cursor": {
-      "require": "./dist/drop-gap-cursor.cjs",
-      "types": "./dist/drop-gap-cursor.d.ts",
-      "import": "./dist/drop-gap-cursor.js",
-      "default": "./dist/drop-gap-cursor.js"
-    },
-    "./global-config-BOOnJGFK": {
-      "types": "./dist/global-config-BOOnJGFK.d.ts"
-    },
-    "./hard-break": {
-      "require": "./dist/hard-break.cjs",
-      "types": "./dist/hard-break.d.ts",
-      "import": "./dist/hard-break.js",
-      "default": "./dist/hard-break.js"
-    },
-    "./heading": {
-      "require": "./dist/heading.cjs",
-      "types": "./dist/heading.d.ts",
-      "import": "./dist/heading.js",
-      "default": "./dist/heading.js"
-    },
-    "./history": {
-      "require": "./dist/history.cjs",
-      "types": "./dist/history.d.ts",
-      "import": "./dist/history.js",
-      "default": "./dist/history.js"
-    },
-    "./horizontal-rule": {
-      "require": "./dist/horizontal-rule.cjs",
-      "types": "./dist/horizontal-rule.d.ts",
-      "import": "./dist/horizontal-rule.js",
-      "default": "./dist/horizontal-rule.js"
-    },
-    "./hover": {
-      "require": "./dist/hover.cjs",
-      "types": "./dist/hover.d.ts",
-      "import": "./dist/hover.js",
-      "default": "./dist/hover.js"
-    },
-    "./image": {
-      "require": "./dist/image.cjs",
-      "types": "./dist/image.d.ts",
-      "import": "./dist/image.js",
-      "default": "./dist/image.js"
-    },
-    "./italic": {
-      "require": "./dist/italic.cjs",
-      "types": "./dist/italic.d.ts",
-      "import": "./dist/italic.js",
-      "default": "./dist/italic.js"
-    },
-    "./link": {
-      "require": "./dist/link.cjs",
-      "types": "./dist/link.d.ts",
-      "import": "./dist/link.js",
-      "default": "./dist/link.js"
-    },
-    "./list": {
-      "require": "./dist/list.cjs",
-      "types": "./dist/list.d.ts",
-      "import": "./dist/list.js",
-      "default": "./dist/list.js"
-    },
+    ".": "./src/index.ts",
+    "./active-node": "./src/active-node.ts",
+    "./base": "./src/base.ts",
+    "./blockquote": "./src/blockquote.ts",
+    "./bold": "./src/bold.ts",
+    "./code": "./src/code.ts",
+    "./code-block": "./src/code-block.ts",
+    "./common": "./src/common/index.ts",
+    "./drag": "./src/drag/index.ts",
+    "./drop-gap-cursor": "./src/drop-gap-cursor.ts",
+    "./hard-break": "./src/hard-break.ts",
+    "./heading": "./src/heading.ts",
+    "./history": "./src/history.ts",
+    "./horizontal-rule": "./src/horizontal-rule.ts",
+    "./hover": "./src/hover.ts",
+    "./image": "./src/image.ts",
+    "./italic": "./src/italic.ts",
+    "./link": "./src/link/index.ts",
+    "./list": "./src/list.ts",
     "./package.json": "./package.json",
-    "./paragraph": {
-      "require": "./dist/paragraph.cjs",
-      "types": "./dist/paragraph.d.ts",
-      "import": "./dist/paragraph.js",
-      "default": "./dist/paragraph.js"
-    },
-    "./placeholder": {
-      "require": "./dist/placeholder.cjs",
-      "types": "./dist/placeholder.d.ts",
-      "import": "./dist/placeholder.js",
-      "default": "./dist/placeholder.js"
-    },
-    "./pm": {
-      "require": "./dist/pm.cjs",
-      "types": "./dist/pm.d.ts",
-      "import": "./dist/pm.js",
-      "default": "./dist/pm.js"
-    },
-    "./pm-utils": {
-      "require": "./dist/pm-utils.cjs",
-      "types": "./dist/pm-utils.d.ts",
-      "import": "./dist/pm-utils.js",
-      "default": "./dist/pm-utils.js"
-    },
-    "./store": {
-      "require": "./dist/store.cjs",
-      "types": "./dist/store.d.ts",
-      "import": "./dist/store.js",
-      "default": "./dist/store.js"
-    },
-    "./strike": {
-      "require": "./dist/strike.cjs",
-      "types": "./dist/strike.d.ts",
-      "import": "./dist/strike.js",
-      "default": "./dist/strike.js"
-    },
-    "./suggestions": {
-      "require": "./dist/suggestions.cjs",
-      "types": "./dist/suggestions.d.ts",
-      "import": "./dist/suggestions.js",
-      "default": "./dist/suggestions.js"
-    },
-    "./test-helpers": {
-      "require": "./dist/test-helpers.cjs",
-      "types": "./dist/test-helpers.d.ts",
-      "import": "./dist/test-helpers.js",
-      "default": "./dist/test-helpers.js"
-    },
-    "./types-CR7mYm01": {
-      "types": "./dist/types-CR7mYm01.d.ts"
-    },
-    "./types-D6LHVjd0": {
-      "types": "./dist/types-D6LHVjd0.d.ts"
-    },
-    "./underline": {
-      "require": "./dist/underline.cjs",
-      "types": "./dist/underline.d.ts",
-      "import": "./dist/underline.js",
-      "default": "./dist/underline.js"
-    },
-    "./utils-lFRHZ6Zd": {
-      "types": "./dist/utils-lFRHZ6Zd.d.ts"
-    }
+    "./paragraph": "./src/paragraph.ts",
+    "./placeholder": "./src/placeholder.ts",
+    "./pm": "./src/pm/index.ts",
+    "./pm-utils": "./src/pm-utils/index.ts",
+    "./store": "./src/store/index.ts",
+    "./strike": "./src/strike.ts",
+    "./suggestions": "./src/suggestions/index.ts",
+    "./test-helpers": "./src/test-helpers/index.ts",
+    "./underline": "./src/underline.ts"
   },
   "peerDependenciesMeta": {
     "orderedmap": {
@@ -338,109 +181,6 @@
       "suggestions": "src/suggestions/index.ts",
       "test-helpers": "src/test-helpers/index.ts",
       "underline": "src/underline.ts"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      ".": [
-        "./dist/index.d.ts"
-      ],
-      "active-node": [
-        "./dist/active-node.d.ts"
-      ],
-      "base": [
-        "./dist/base.d.ts"
-      ],
-      "blockquote": [
-        "./dist/blockquote.d.ts"
-      ],
-      "bold": [
-        "./dist/bold.d.ts"
-      ],
-      "code": [
-        "./dist/code.d.ts"
-      ],
-      "code-block": [
-        "./dist/code-block.d.ts"
-      ],
-      "collection-CwcVcnj1": [
-        "./dist/collection-CwcVcnj1.d.ts"
-      ],
-      "common": [
-        "./dist/common.d.ts"
-      ],
-      "drag": [
-        "./dist/drag.d.ts"
-      ],
-      "drop-gap-cursor": [
-        "./dist/drop-gap-cursor.d.ts"
-      ],
-      "global-config-BOOnJGFK": [
-        "./dist/global-config-BOOnJGFK.d.ts"
-      ],
-      "hard-break": [
-        "./dist/hard-break.d.ts"
-      ],
-      "heading": [
-        "./dist/heading.d.ts"
-      ],
-      "history": [
-        "./dist/history.d.ts"
-      ],
-      "horizontal-rule": [
-        "./dist/horizontal-rule.d.ts"
-      ],
-      "hover": [
-        "./dist/hover.d.ts"
-      ],
-      "image": [
-        "./dist/image.d.ts"
-      ],
-      "italic": [
-        "./dist/italic.d.ts"
-      ],
-      "link": [
-        "./dist/link.d.ts"
-      ],
-      "list": [
-        "./dist/list.d.ts"
-      ],
-      "paragraph": [
-        "./dist/paragraph.d.ts"
-      ],
-      "placeholder": [
-        "./dist/placeholder.d.ts"
-      ],
-      "pm": [
-        "./dist/pm.d.ts"
-      ],
-      "pm-utils": [
-        "./dist/pm-utils.d.ts"
-      ],
-      "store": [
-        "./dist/store.d.ts"
-      ],
-      "strike": [
-        "./dist/strike.d.ts"
-      ],
-      "suggestions": [
-        "./dist/suggestions.d.ts"
-      ],
-      "test-helpers": [
-        "./dist/test-helpers.d.ts"
-      ],
-      "types-CR7mYm01": [
-        "./dist/types-CR7mYm01.d.ts"
-      ],
-      "types-D6LHVjd0": [
-        "./dist/types-D6LHVjd0.d.ts"
-      ],
-      "underline": [
-        "./dist/underline.d.ts"
-      ],
-      "utils-lFRHZ6Zd": [
-        "./dist/utils-lFRHZ6Zd.d.ts"
-      ]
     }
   }
 }
