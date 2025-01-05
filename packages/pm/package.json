@@ -7,7 +7,12 @@
     "url": "http://github.com/kepta"
   },
   "description": "A modern collection of ProseMirror packages for building powerful editing experiences",
-  "keywords": ["prosemirror", "rich text editor", "editor", "typescript"],
+  "keywords": [
+    "prosemirror",
+    "rich text editor",
+    "editor",
+    "typescript"
+  ],
   "homepage": "https://bangle.io",
   "bugs": {
     "url": "https://github.com/bangle-io/banger-editor/issues"
@@ -22,8 +27,13 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./src/index.ts",
-  "files": ["dist", "src"],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "prepublishOnly": "tsx ../../packages/tooling/scripts/prepublish-run.ts",
     "postpublish": "tsx ../../packages/tooling/scripts/postpublish-run.ts",
@@ -69,23 +79,103 @@
     "prosemirror-view": "*"
   },
   "exports": {
-    ".": "./src/index.ts",
-    "./commands": "./src/commands/index.ts",
-    "./dropcursor": "./src/dropcursor/index.ts",
-    "./flat-list": "./src/flat-list/index.ts",
-    "./gapcursor": "./src/gapcursor/index.ts",
-    "./history": "./src/history/index.ts",
-    "./inputrules": "./src/inputrules/index.ts",
-    "./keymap": "./src/keymap/index.ts",
-    "./kushan": "./src/kushan.ts",
-    "./model": "./src/model/index.ts",
-    "./orderedmap": "./src/orderedmap/index.ts",
+    ".": {
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./commands": {
+      "require": "./dist/commands.cjs",
+      "types": "./dist/commands.d.ts",
+      "import": "./dist/commands.js",
+      "default": "./dist/commands.js"
+    },
+    "./dropcursor": {
+      "require": "./dist/dropcursor.cjs",
+      "types": "./dist/dropcursor.d.ts",
+      "import": "./dist/dropcursor.js",
+      "default": "./dist/dropcursor.js"
+    },
+    "./flat-list": {
+      "require": "./dist/flat-list.cjs",
+      "types": "./dist/flat-list.d.ts",
+      "import": "./dist/flat-list.js",
+      "default": "./dist/flat-list.js"
+    },
+    "./gapcursor": {
+      "require": "./dist/gapcursor.cjs",
+      "types": "./dist/gapcursor.d.ts",
+      "import": "./dist/gapcursor.js",
+      "default": "./dist/gapcursor.js"
+    },
+    "./history": {
+      "require": "./dist/history.cjs",
+      "types": "./dist/history.d.ts",
+      "import": "./dist/history.js",
+      "default": "./dist/history.js"
+    },
+    "./inputrules": {
+      "require": "./dist/inputrules.cjs",
+      "types": "./dist/inputrules.d.ts",
+      "import": "./dist/inputrules.js",
+      "default": "./dist/inputrules.js"
+    },
+    "./keymap": {
+      "require": "./dist/keymap.cjs",
+      "types": "./dist/keymap.d.ts",
+      "import": "./dist/keymap.js",
+      "default": "./dist/keymap.js"
+    },
+    "./kushan": {
+      "require": "./dist/kushan.cjs",
+      "types": "./dist/kushan.d.ts",
+      "import": "./dist/kushan.js",
+      "default": "./dist/kushan.js"
+    },
+    "./model": {
+      "require": "./dist/model.cjs",
+      "types": "./dist/model.d.ts",
+      "import": "./dist/model.js",
+      "default": "./dist/model.js"
+    },
+    "./orderedmap": {
+      "require": "./dist/orderedmap.cjs",
+      "types": "./dist/orderedmap.d.ts",
+      "import": "./dist/orderedmap.js",
+      "default": "./dist/orderedmap.js"
+    },
     "./package.json": "./package.json",
-    "./schema-basic": "./src/schema-basic/index.ts",
-    "./state": "./src/state/index.ts",
-    "./test-builder": "./src/test-builder/index.ts",
-    "./transform": "./src/transform/index.ts",
-    "./view": "./src/view/index.ts"
+    "./schema-basic": {
+      "require": "./dist/schema-basic.cjs",
+      "types": "./dist/schema-basic.d.ts",
+      "import": "./dist/schema-basic.js",
+      "default": "./dist/schema-basic.js"
+    },
+    "./state": {
+      "require": "./dist/state.cjs",
+      "types": "./dist/state.d.ts",
+      "import": "./dist/state.js",
+      "default": "./dist/state.js"
+    },
+    "./test-builder": {
+      "require": "./dist/test-builder.cjs",
+      "types": "./dist/test-builder.d.ts",
+      "import": "./dist/test-builder.js",
+      "default": "./dist/test-builder.js"
+    },
+    "./transform": {
+      "require": "./dist/transform.cjs",
+      "types": "./dist/transform.d.ts",
+      "import": "./dist/transform.js",
+      "default": "./dist/transform.js"
+    },
+    "./view": {
+      "require": "./dist/view.cjs",
+      "types": "./dist/view.d.ts",
+      "import": "./dist/view.js",
+      "default": "./dist/view.js"
+    }
   },
   "banglePackageConfig": {
     "env": "universal",
@@ -135,5 +225,77 @@
       "optional": false
     }
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "bangleConfig": {
+    "tsupEntry": {
+      "index": "src/index.ts",
+      "commands": "src/commands/index.ts",
+      "dropcursor": "src/dropcursor/index.ts",
+      "flat-list": "src/flat-list/index.ts",
+      "gapcursor": "src/gapcursor/index.ts",
+      "history": "src/history/index.ts",
+      "inputrules": "src/inputrules/index.ts",
+      "keymap": "src/keymap/index.ts",
+      "kushan": "src/kushan.ts",
+      "model": "src/model/index.ts",
+      "orderedmap": "src/orderedmap/index.ts",
+      "schema-basic": "src/schema-basic/index.ts",
+      "state": "src/state/index.ts",
+      "test-builder": "src/test-builder/index.ts",
+      "transform": "src/transform/index.ts",
+      "view": "src/view/index.ts"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./dist/index.d.ts"
+      ],
+      "commands": [
+        "./dist/commands.d.ts"
+      ],
+      "dropcursor": [
+        "./dist/dropcursor.d.ts"
+      ],
+      "flat-list": [
+        "./dist/flat-list.d.ts"
+      ],
+      "gapcursor": [
+        "./dist/gapcursor.d.ts"
+      ],
+      "history": [
+        "./dist/history.d.ts"
+      ],
+      "inputrules": [
+        "./dist/inputrules.d.ts"
+      ],
+      "keymap": [
+        "./dist/keymap.d.ts"
+      ],
+      "kushan": [
+        "./dist/kushan.d.ts"
+      ],
+      "model": [
+        "./dist/model.d.ts"
+      ],
+      "orderedmap": [
+        "./dist/orderedmap.d.ts"
+      ],
+      "schema-basic": [
+        "./dist/schema-basic.d.ts"
+      ],
+      "state": [
+        "./dist/state.d.ts"
+      ],
+      "test-builder": [
+        "./dist/test-builder.d.ts"
+      ],
+      "transform": [
+        "./dist/transform.d.ts"
+      ],
+      "view": [
+        "./dist/view.d.ts"
+      ]
+    }
+  }
 }

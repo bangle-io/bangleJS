@@ -97,12 +97,24 @@ importers:
         specifier: ^14.0.0
         version: 14.1.0
     devDependencies:
+      '@bangle.dev/packager':
+        specifier: workspace:*
+        version: link:../tooling/packager
       prosemirror-markdown:
         specifier: ^1.13.1
         version: 1.13.1
       prosemirror-model:
         specifier: ^1.24.1
         version: 1.24.1
+      tsconfig:
+        specifier: workspace:*
+        version: link:../tooling/tsconfig
+      tsup:
+        specifier: ^8.3.5
+        version: 8.3.5(postcss@8.4.49)(tsx@4.19.2)(typescript@5.7.2)
+      tsup-config:
+        specifier: workspace:*
+        version: link:../tooling/tsup-config
 
   packages/prosemirror-all:
     dependencies:

@@ -1,1 +1,1 @@
-export * from 'prosemirror-markdown';
+export { MarkdownSerializer, MarkdownParser } from 'prosemirror-markdown';

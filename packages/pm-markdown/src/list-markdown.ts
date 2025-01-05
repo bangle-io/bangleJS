@@ -1,4 +1,5 @@
-import type { PluginWithOptions, Token } from 'markdown-it';
+import type { PluginWithOptions } from 'markdown-it';
+import type Token from 'markdown-it/lib/token.mjs';
 
 /**
  * This plugin is responsible for customizing how bullet, ordered,

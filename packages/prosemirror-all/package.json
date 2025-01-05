@@ -7,7 +7,12 @@
     "url": "http://github.com/kepta"
   },
   "description": "A modern collection of ProseMirror packages for building powerful editing experiences",
-  "keywords": ["prosemirror", "rich text editor", "editor", "typescript"],
+  "keywords": [
+    "prosemirror",
+    "rich text editor",
+    "editor",
+    "typescript"
+  ],
   "homepage": "https://bangle.io",
   "bugs": {
     "url": "https://github.com/bangle-io/banger-editor/issues"
@@ -22,8 +27,13 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./src/index.ts",
-  "files": ["dist", "src"],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "prepublishOnly": "tsx ../../packages/tooling/scripts/prepublish-run.ts",
     "postpublish": "tsx ../../packages/tooling/scripts/postpublish-run.ts",
@@ -53,8 +63,20 @@
     "@bangle.dev/packager": "workspace:*"
   },
   "exports": {
-    ".": "./src/index.ts",
+    ".": {
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
     "./package.json": "./package.json"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./dist/index.d.ts"
+      ]
+    }
+  }
 }
