@@ -30,9 +30,10 @@
     "build:tsup": "tsup --config tsup.config.ts"
   },
   "dependencies": {
-    "@types/orderedmap": "^2.0.0"
+    "jotai": "^2.11.0"
   },
   "devDependencies": {
+    "@types/orderedmap": "^2.0.0",
     "orderedmap": "^2.1.1",
     "prosemirror-commands": "^1.6.2",
     "prosemirror-dropcursor": "^1.8.1",
@@ -92,12 +93,6 @@
     "kind": "js-util"
   },
   "peerDependenciesMeta": {
-    "orderedmap": {
-      "optional": true
-    },
-    "prosemirror-commands": {
-      "optional": true
-    },
     "prosemirror-dropcursor": {
       "optional": true
     },
@@ -110,29 +105,11 @@
     "prosemirror-history": {
       "optional": true
     },
-    "prosemirror-inputrules": {
-      "optional": true
-    },
-    "prosemirror-keymap": {
-      "optional": true
-    },
-    "prosemirror-model": {
-      "optional": false
-    },
     "prosemirror-schema-basic": {
       "optional": true
     },
-    "prosemirror-state": {
-      "optional": false
-    },
     "prosemirror-test-builder": {
       "optional": true
-    },
-    "prosemirror-transform": {
-      "optional": false
-    },
-    "prosemirror-view": {
-      "optional": false
     }
   },
   "sideEffects": false,

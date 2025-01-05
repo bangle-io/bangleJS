@@ -7,7 +7,12 @@
     "url": "http://github.com/kepta"
   },
   "description": "A modern collection of ProseMirror packages for building powerful editing experiences",
-  "keywords": ["prosemirror", "rich text editor", "editor", "typescript"],
+  "keywords": [
+    "prosemirror",
+    "rich text editor",
+    "editor",
+    "typescript"
+  ],
   "homepage": "https://bangle.io",
   "bugs": {
     "url": "https://github.com/bangle-io/banger-editor/issues"
@@ -23,7 +28,10 @@
     "access": "public"
   },
   "main": "./src/index.ts",
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "prepublishOnly": "tsx ../../packages/tooling/scripts/prepublish-run.ts",
     "postpublish": "tsx ../../packages/tooling/scripts/postpublish-run.ts",
@@ -43,8 +51,7 @@
     "tsup-config": "workspace:*"
   },
   "peerDependencies": {
-    "prosemirror-markdown": "*",
-    "prosemirror-model": "*"
+    "prosemirror-markdown": "*"
   },
   "exports": {
     ".": "./src/index.ts",
@@ -53,14 +60,6 @@
     "./package.json": "./package.json",
     "./pm": "./src/pm.ts",
     "./tokenizer": "./src/tokenizer.ts"
-  },
-  "peerDependenciesMeta": {
-    "prosemirror-markdown": {
-      "optional": false
-    },
-    "prosemirror-model": {
-      "optional": false
-    }
   },
   "sideEffects": false,
   "bangleConfig": {
