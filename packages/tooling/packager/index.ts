@@ -6,3 +6,4 @@ export * from './copy-readme';
 export * from './find-root';
 export * from './execa';
 export * from './build-src-export-map';
+export * from './set-version';

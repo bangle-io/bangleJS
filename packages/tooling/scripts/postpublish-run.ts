@@ -3,6 +3,7 @@ import {
   currentPublishingPkgName,
   execa,
   findRoot,
+  buildSrcExportMap,
 } from '@bangle.dev/packager';
 import fs from 'fs-extra';
 
@@ -20,6 +21,10 @@ async function main() {
   fs.ensureDirSync(`${pkg.dir}/dist`);
   const readMe = await copyReadMe(pkg, root);
   await readMe.postpublish();
+
+  await buildSrcExportMap(`${pkg.dir}/src`, pkg, true);
+
+  console.log('Done publishing package name', currentPublishingPkgName);
 }
 
 main();

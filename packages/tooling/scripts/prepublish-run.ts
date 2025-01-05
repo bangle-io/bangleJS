@@ -21,6 +21,7 @@ async function main() {
   fs.ensureDirSync(`${pkg.dir}/dist`);
 
   const readMe = await copyReadMe(pkg, root);
+
   await readMe.prepublish();
 
   await execa('tsup', ['--config', 'tsup.config.ts'], {
@@ -29,7 +30,7 @@ async function main() {
 
   await buildDistExportMap(`${pkg.dir}/dist`, pkg, true);
 
-  console.log('Current publishing package name', currentPublishingPkgName);
+  console.log('Done publishing package name', currentPublishingPkgName);
 }
 
 main();
