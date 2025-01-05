@@ -27,7 +27,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./src/index.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "src"
@@ -54,12 +56,37 @@
     "prosemirror-markdown": "*"
   },
   "exports": {
-    ".": "./src/index.ts",
-    "./list-markdown": "./src/list-markdown.ts",
-    "./markdown": "./src/markdown.ts",
+    ".": {
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./list-markdown": {
+      "require": "./dist/list-markdown.cjs",
+      "types": "./dist/list-markdown.d.ts",
+      "import": "./dist/list-markdown.js",
+      "default": "./dist/list-markdown.js"
+    },
+    "./markdown": {
+      "require": "./dist/markdown.cjs",
+      "types": "./dist/markdown.d.ts",
+      "import": "./dist/markdown.js",
+      "default": "./dist/markdown.js"
+    },
     "./package.json": "./package.json",
-    "./pm": "./src/pm.ts",
-    "./tokenizer": "./src/tokenizer.ts"
+    "./pm": {
+      "require": "./dist/pm.cjs",
+      "types": "./dist/pm.d.ts",
+      "import": "./dist/pm.js",
+      "default": "./dist/pm.js"
+    },
+    "./tokenizer": {
+      "require": "./dist/tokenizer.cjs",
+      "types": "./dist/tokenizer.d.ts",
+      "import": "./dist/tokenizer.js",
+      "default": "./dist/tokenizer.js"
+    }
   },
   "sideEffects": false,
   "bangleConfig": {
@@ -69,6 +96,25 @@
       "markdown": "src/markdown.ts",
       "pm": "src/pm.ts",
       "tokenizer": "src/tokenizer.ts"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./dist/index.d.ts"
+      ],
+      "list-markdown": [
+        "./dist/list-markdown.d.ts"
+      ],
+      "markdown": [
+        "./dist/markdown.d.ts"
+      ],
+      "pm": [
+        "./dist/pm.d.ts"
+      ],
+      "tokenizer": [
+        "./dist/tokenizer.d.ts"
+      ]
     }
   }
 }

@@ -10,6 +10,8 @@ export default defineConfig(async () => {
 
   return {
     ...baseConfig,
+    // prevents adding `import prosemiror-xyz` to the  bundle
+    treeshake: 'smallest',
     entry: entry,
   };
 });

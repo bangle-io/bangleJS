@@ -3,7 +3,6 @@
   "display": "Default",
   "compilerOptions": {
     "baseUrl": ".",
-    // "composite": true,
     "declaration": true,
     "declarationDir": "./dist",
     "esModuleInterop": true,
