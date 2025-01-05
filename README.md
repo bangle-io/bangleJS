@@ -7,19 +7,17 @@
 Banger Editor is a collection of prosemirror code for building powerful editing experiences.
 
 - :battery: **Batteries included**\
-We expose plenty of components to help you get started with your Editor.
-
-- **Insanely powerful API**\
-Bangle uses [Prosemirror](https://prosemirror.net/) to provide an API which can help you build the next google docs including [collaboration](https://prosemirror.net/examples/collab/#edit-Example).
+We expose plenty of Prosemirror packages to help you get started with your Editor.
 
 - **Vanilla JS**\
-Bangle is written in a framework agnostic way, so that you can focus on building the editor and not learning a new framework. That said, we have support for React and I have plans to add Vue support in the coming months.
+Banger is written in a framework agnostic way, so that you can focus on building the editor and not learning a new framework. That said, we have support for React and I have plans to add Vue support in the coming months.
 
-- **Customize UI with React (more frameworks to come)**\
-Doing UI in vanilla Javascript is not fun. Bangle comes with first party React support and React components (the ones starting with `@bangle.dev/react-`) to add some extra :nail_care: oomph to your Editor.
+- **No abstraction over Prosemirror**\
+Banger is a collection of prosemirror packages, it works alongside prosemirror and not abstracting over it. Because of this, you can use it with any other framework Prosemirror abstraction like `tiptap`, `milkdown`, `novel` etc.
 
-- **:car: Fast as a racing car**\
-Bangle is as fast as a rich text editor can be; try pasting a really long document in one of its example (:wink: don't forget to compare it with your current favourite editor).
+- **Works with React or any other framework**\
+Banger is headless and provides you shadcn/ui like components that you can copy paste in your project.
+
 
 ## Getting started
 
