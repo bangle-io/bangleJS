@@ -21,15 +21,14 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "./src/index.ts",
   "files": [
     "lib"
   ],
   "scripts": {
-    "build": "tsup --config tsup.config.ts",
-    "build:watch": "tsup --config tsup.config.ts --watch"
+    "prepublishOnly": "tsx ../../packages/tooling/scripts/prepublish-run.ts",
+    "postpublish": "tsx ../../packages/tooling/scripts/postpublish-run.ts",
+    "build:tsup": "tsup --config tsup.config.ts"
   },
   "dependencies": {
     "@types/orderedmap": "^2.0.0"
@@ -70,82 +69,22 @@
     "prosemirror-view": "*"
   },
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    },
+    ".": "./src/index.ts",
+    "./commands": "./src/commands/index.ts",
+    "./dropcursor": "./src/dropcursor/index.ts",
+    "./flat-list": "./src/flat-list/index.ts",
+    "./gapcursor": "./src/gapcursor/index.ts",
+    "./history": "./src/history/index.ts",
+    "./inputrules": "./src/inputrules/index.ts",
+    "./keymap": "./src/keymap/index.ts",
+    "./kushan": "./src/kushan.ts",
+    "./model": "./src/model/index.ts",
+    "./orderedmap": "./src/orderedmap/index.ts",
     "./package.json": "./package.json",
-    "./commands": {
-      "types": "./dist/commands.d.ts",
-      "import": "./dist/commands.mjs",
-      "require": "./dist/commands.js"
-    },
-    "./dropcursor": {
-      "types": "./dist/dropcursor.d.ts",
-      "import": "./dist/dropcursor.mjs",
-      "require": "./dist/dropcursor.js"
-    },
-    "./flat-list": {
-      "types": "./dist/flat-list.d.ts",
-      "import": "./dist/flat-list.mjs",
-      "require": "./dist/flat-list.js"
-    },
-    "./gapcursor": {
-      "types": "./dist/gapcursor.d.ts",
-      "import": "./dist/gapcursor.mjs",
-      "require": "./dist/gapcursor.js"
-    },
-    "./history": {
-      "types": "./dist/history.d.ts",
-      "import": "./dist/history.mjs",
-      "require": "./dist/history.js"
-    },
-    "./inputrules": {
-      "types": "./dist/inputrules.d.ts",
-      "import": "./dist/inputrules.mjs",
-      "require": "./dist/inputrules.js"
-    },
-    "./keymap": {
-      "types": "./dist/keymap.d.ts",
-      "import": "./dist/keymap.mjs",
-      "require": "./dist/keymap.js"
-    },
-    "./kushan": {
-      "types": "./dist/kushan.d.ts",
-      "import": "./dist/kushan.mjs",
-      "require": "./dist/kushan.js"
-    },
-    "./model": {
-      "types": "./dist/model.d.ts",
-      "import": "./dist/model.mjs",
-      "require": "./dist/model.js"
-    },
-    "./orderedmap": {
-      "types": "./dist/orderedmap.d.ts",
-      "import": "./dist/orderedmap.mjs",
-      "require": "./dist/orderedmap.js"
-    },
-    "./schema-basic": {
-      "types": "./dist/schema-basic.d.ts",
-      "import": "./dist/schema-basic.mjs",
-      "require": "./dist/schema-basic.js"
-    },
-    "./state": {
-      "types": "./dist/state.d.ts",
-      "import": "./dist/state.mjs",
-      "require": "./dist/state.js"
-    },
-    "./transform": {
-      "types": "./dist/transform.d.ts",
-      "import": "./dist/transform.mjs",
-      "require": "./dist/transform.js"
-    },
-    "./view": {
-      "types": "./dist/view.d.ts",
-      "import": "./dist/view.mjs",
-      "require": "./dist/view.js"
-    }
+    "./schema-basic": "./src/schema-basic/index.ts",
+    "./state": "./src/state/index.ts",
+    "./transform": "./src/transform/index.ts",
+    "./view": "./src/view/index.ts"
   },
   "banglePackageConfig": {
     "env": "universal",

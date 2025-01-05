@@ -6,7 +6,8 @@
     "@manypkg/cli": "^0.23.0",
     "@types/node": "^22.10.5",
     "typescript": "^5.7.2",
-    "vitest": "^2.1.8"
+    "vitest": "^2.1.8",
+    "tsx": "^4.19.2"
   },
   "manypkg": {
     "defaultBranch": "main",
@@ -19,6 +20,7 @@
     "lint:ci": "pnpm run custom-validation && pnpm run typecheck && pnpm biome ci .  --diagnostic-level=error",
     "lint:fix": "pnpm biome check --fix",
     "test:ci": "pnpm vitest run",
-    "typecheck": "tsc -b"
+    "typecheck": "tsc -b",
+    "pkg-prepublish": "tsx packages/tooling/scripts/prepublish-run.ts"
   }
 }

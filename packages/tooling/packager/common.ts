@@ -1,12 +1,9 @@
 export interface ExportMapResult {
-  /** Root level exports (main, module, types) */
-  rootExports: {
-    main?: string;
-    module?: string;
-    types?: string;
-  };
+  main?: string;
+  module?: string;
+  types?: string;
   /** The export map object */
-  exportMap: Record<
+  exports: Record<
     string,
     string | { import?: string; require?: string; types?: string }
   >;

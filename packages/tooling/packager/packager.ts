@@ -7,6 +7,7 @@ import fs from 'fs-extra';
 import { globby } from 'globby';
 import set from 'lodash/set';
 import type { ExportMapResult } from './common';
+import { formatPackageJson } from './format-package-json';
 
 export type { PackageJSON } from '@manypkg/tools';
 
@@ -334,7 +335,7 @@ class Packager {
     const topLevelItems = await this.getSrcTopLevelItems(pkg.dir);
     const allFiles = [...topLevelItems, ...additionalFiles];
 
-    const { rootExports, exportMap } = buildExportMap({
+    const { exports, ...other } = buildExportMap({
       outputDir: this.config.distDir,
       files: allFiles,
       isSrc: false,
@@ -343,8 +344,8 @@ class Packager {
 
     return {
       ...packageJson,
-      ...rootExports,
-      exports: exportMap,
+      ...other,
+      exports,
     };
   }
 
@@ -577,7 +578,7 @@ class Packager {
     const topLevelItems = await this.getSrcTopLevelItems(pkg.dir);
     const packageJson = await this.readFileJson(packageJsonPath);
 
-    const { rootExports, exportMap } = buildExportMap({
+    const { exports, ...others } = buildExportMap({
       outputDir: this.config.srcDir,
       files: topLevelItems,
       isSrc: true,
@@ -586,8 +587,8 @@ class Packager {
 
     const updatedPkgJson = {
       ...packageJson,
-      ...rootExports,
-      exports: exportMap,
+      ...others,
+      exports,
     };
 
     console.log(updatedPkgJson);
@@ -618,54 +619,6 @@ function isValidVersionFormat(version: string): boolean {
 function isGitDirty(): boolean {
   const output = execSync('git status --porcelain').toString();
   return !!output.trim();
-}
-
-function formatPackageJson(pkg: Record<string, any>): PackageJSON {
-  const STANDARD_FIELD_ORDER = [
-    'name',
-    'version',
-    'authors',
-    'author',
-    'private',
-    'description',
-    'keywords',
-    'homepage',
-    'bugs',
-    'license',
-    'contributors',
-    'repository',
-    'type',
-    'publishConfig',
-    'main',
-    'module',
-    'types',
-    'bin',
-    'files',
-    'scripts',
-    'dependencies',
-    'devDependencies',
-    'peerDependencies',
-    'optionalDependencies',
-    'engines',
-    'exports',
-    'packageManager',
-  ];
-
-  const formatted: Record<string, any> = {};
-
-  for (const field of STANDARD_FIELD_ORDER) {
-    if (field in pkg) {
-      formatted[field] = pkg[field];
-    }
-  }
-
-  for (const field in pkg) {
-    if (!STANDARD_FIELD_ORDER.includes(field)) {
-      formatted[field] = pkg[field];
-    }
-  }
-
-  return formatted as PackageJSON;
 }
 
 // foo.ts -> true
@@ -705,10 +658,8 @@ function buildExportMap(config: ExportMapConfig): ExportMapResult {
 
   if (isSrc) {
     return {
-      rootExports: {
-        main: hasTopLevelIndex ? `./${srcDir}/index.ts` : '',
-      },
-      exportMap: Object.fromEntries(
+      main: hasTopLevelIndex ? `./${srcDir}/index.ts` : '',
+      exports: Object.fromEntries(
         files.map((file) => {
           const parsedPath = path.parse(file);
           const key = parsedPath.dir || parsedPath.name;
@@ -756,7 +707,7 @@ function buildExportMap(config: ExportMapConfig): ExportMapResult {
       };
     });
 
-  return { rootExports, exportMap };
+  return { ...rootExports, exports: exportMap };
 }
 
 export { Packager, type PackagerConfig, type PublishConfig };

@@ -20,3 +20,14 @@ This document outlines the process for publishing new package versions and creat
 1. Go to github and create a new release with the tag that was created in the previous step.
 
 1. Run `pnpm publish-alpha --otp=123456` or `publish-latest` to publish the packages to npm.
+
+
+## PNPM Commands
+
+```
+# build all packages
+pnpm -r build
+
+# single concurrency - better output
+pnpm run --workspace-concurrency=1 -r "build"
+```

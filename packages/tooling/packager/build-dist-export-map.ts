@@ -1,15 +1,20 @@
 import path from 'node:path';
+import type { Package } from '@manypkg/tools';
 import fs from 'fs-extra';
 import { globby } from 'globby';
 import set from 'lodash/set';
-import { sortObject, type ExportMapResult } from './common';
+import { type ExportMapResult, sortObject } from './common';
+import { formatPackageJson } from './format-package-json';
+
 /**
  * Builds an export map by reading the actual contents of the dist directory.
  * This is useful when you want to generate exports based on what's actually built
  * rather than source files.
  */
-export async function buildExportMap(
+export async function buildDistExportMap(
   distDir: string,
+  pkg: Package,
+  writeToPackageJson = false,
 ): Promise<ExportMapResult> {
   if (!fs.existsSync(distDir)) {
     throw new Error(`Dist directory ${distDir} does not exist`);
@@ -71,11 +76,25 @@ export async function buildExportMap(
     return a.localeCompare(b);
   });
 
-  const rootExports = {
+  const result = {
     main: './index.js',
     module: './index.mjs',
     types: './index.d.ts',
+    exports: exportMap,
   };
 
-  return { rootExports, exportMap };
+  if (writeToPackageJson) {
+    await fs.writeJSON(
+      path.join(pkg.dir, 'package.json'),
+      formatPackageJson({
+        ...pkg.packageJson,
+        ...result,
+      }),
+      {
+        spaces: 2,
+      },
+    );
+  }
+
+  return result;
 }

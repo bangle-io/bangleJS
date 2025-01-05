@@ -83,4 +83,4 @@ async function main() {
 main().catch((err) => {
   console.error('Version update process failed:', err);
   process.exit(1);
-}); 
+});
