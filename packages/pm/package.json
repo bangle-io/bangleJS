@@ -1,6 +1,6 @@
 {
   "name": "@bangle.dev/pm",
-  "version": "1.0.0",
+  "version": "2.0.0-alpha.1",
   "authors": [
     {
       "name": "Kushan Joshi",
@@ -22,7 +22,9 @@
     "access": "public"
   },
   "main": "./src/index.ts",
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "prepublishOnly": "tsx ../../packages/tooling/scripts/prepublish-run.ts",
     "postpublish": "tsx ../../packages/tooling/scripts/postpublish-run.ts",
