@@ -29,5 +29,5 @@ This document outlines the process for publishing new package versions and creat
 pnpm -r build
 
 # single concurrency - better output
-pnpm run --workspace-concurrency=1 -r "build"
+pnpm -r  run --workspace-concurrency=1 "build"
 ```
