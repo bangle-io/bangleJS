@@ -101,7 +101,7 @@ export function setPriority<
   return item;
 }
 
-export function collection<const T extends CollectionType>(collection: T): T {
+export function collection<T extends CollectionType>(collection: T): T {
   return collection;
 }
 
@@ -114,19 +114,19 @@ type PluginFactory =
   | PMPlugin[]
   | ((options: PluginFactoryContext) => PMPlugin | PMPlugin[] | null);
 
-type MarkdownConfig = {
+export type MarkdownConfig = {
   nodes?: Record<string, MarkdownNodeConfig>;
   marks?: Record<string, MarkdownMarkConfig>;
 };
 
-type MarkdownNodeConfig = {
+export type MarkdownNodeConfig = {
   toMarkdown: UnnestObjValue<MarkdownSerializer['nodes']>;
   parseMarkdown?: MarkdownParser['tokens'];
 };
 
 type UnnestObjValue<T> = T extends { [k: string]: infer U } ? U : never;
 
-type MarkdownMarkConfig = {
+export type MarkdownMarkConfig = {
   toMarkdown: UnnestObjValue<MarkdownSerializer['marks']>;
   parseMarkdown?: MarkdownParser['tokens'];
 };

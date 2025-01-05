@@ -3,6 +3,9 @@ export {
   resolve,
   collection,
   type CollectionType,
+  type MarkdownConfig,
+  type MarkdownNodeConfig,
+  type MarkdownMarkConfig,
 } from './common';
 
 export * from './active-node';
