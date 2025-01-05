@@ -3,13 +3,19 @@ import path from 'node:path';
 import { findRootSync } from '@manypkg/find-root';
 import {
   type Package,
-  getPackages,
-  getPackagesSync,
+
 } from '@manypkg/get-packages';
 import type { PackageJSON } from '@manypkg/tools';
 import fs from 'fs-extra';
 import { globby } from 'globby';
 import { set } from 'lodash';
+
+interface PublishConfigType {
+  registry?: string;
+  access?: string;
+  tag?: string;
+  directory?: string;
+}
 
 interface PackagerConfig {
   /** Root directory of the monorepo. If not provided, will be auto-detected */
@@ -31,6 +37,12 @@ interface PackagerConfig {
   tsupEntryField?: string;
   /** Glob patterns to ignore when generating tsup config */
   tsupIgnorePatterns?: string[];
+
+  /**
+   * When true, no changes are actually written to the filesystem or run as shell commands.
+   * This is a "dry run" mode for planning and debugging.
+   */
+  dry?: boolean;
 }
 
 interface PublishConfig {
@@ -38,13 +50,33 @@ interface PublishConfig {
   cleanup?: boolean;
   /** Additional files to include in the package */
   additionalFiles?: string[];
+  /**
+   * Optional override for the publish command (e.g. "pnpm publish", "yarn publish").
+   * By default, "npm publish" is used.
+   */
+  publishCommand?: string;
 }
 
 class Packager {
-  private config: Required<PackagerConfig>;
+  private config: Required<Omit<PackagerConfig, 'dry'>> & { dry: boolean };
   public packages: Package[] = [];
   private initialized = false;
   private root: ReturnType<typeof findRootSync>;
+
+  /**
+   * In dry mode, all file read/write operations can be done against this memoryFS
+   * instead of the real file system.
+   */
+  private memoryFS: Record<string, any> = {};
+
+  /**
+   * Clears the memory filesystem in dry run mode
+   */
+  private clearMemoryFS(): void {
+    if (this.config.dry) {
+      this.memoryFS = {};
+    }
+  }
 
   constructor(config: PackagerConfig) {
     this.root = findRootSync(config.rootDir || process.cwd());
@@ -63,8 +95,9 @@ class Packager {
         '**/.*/**',
       ],
       rootDir: this.root.rootDir,
+      dry: config.dry ?? false, // default is false
       ...config,
-    };
+    } 
   }
 
   public async init(): Promise<void> {
@@ -85,6 +118,109 @@ class Packager {
     }
   }
 
+  // =====================================================
+  //                DRY-RUN FS HELPERS
+  // =====================================================
+
+  /**
+   * Validates a file path to prevent path traversal
+   */
+  private validatePath(filePath: string): void {
+    const normalizedPath = path.normalize(filePath);
+    const resolvedPath = path.resolve(this.config.rootDir, normalizedPath);
+    
+    if (!resolvedPath.startsWith(this.config.rootDir)) {
+      throw new Error(`Invalid path: ${filePath} attempts to access outside of root directory`);
+    }
+  }
+
+  /**
+   * Read a JSON file. In dry mode, reads from memory if it exists;
+   * otherwise it loads from disk and caches it to memory.
+   */
+  private async readFileJson(filePath: string): Promise<any> {
+    this.validatePath(filePath);
+
+    if (this.config.dry && this.memoryFS[filePath] !== undefined) {
+      // In dry mode, return the cached version if present
+      return this.memoryFS[filePath];
+    }
+
+    // Otherwise, read from filesystem
+    const data = await fs.readJson(filePath);
+    if (this.config.dry) {
+      this.memoryFS[filePath] = data; // cache it in memory
+    }
+    return data;
+  }
+
+  /**
+   * Write JSON data to a file. In dry mode, we only log and
+   * update the memoryFS instead of actually writing to disk.
+   */
+  private async writeFileJson(filePath: string, data: any): Promise<void> {
+    this.validatePath(filePath);
+
+    if (this.config.dry) {
+      this.memoryFS[filePath] = data;
+      console.log(`[Dry Run] writeFileJson -> ${filePath}:`, data);
+      return;
+    }
+    await fs.writeJson(filePath, data, { spaces: 2 });
+  }
+
+  /**
+   * Check if a file exists on disk. In dry mode, checks memoryFS first.
+   */
+  private fileExistsSync(filePath: string): boolean {
+    this.validatePath(filePath);
+
+    if (this.config.dry) {
+      // if memory has it, consider it "existing"
+      if (this.memoryFS[filePath] !== undefined) {
+        return true;
+      }
+    }
+    return fs.existsSync(filePath);
+  }
+
+  /**
+   * Copy a file from A to B. If in dry mode, just log the operation.
+   */
+  private async copyFile(source: string, destination: string): Promise<void> {
+    this.validatePath(source);
+    this.validatePath(destination);
+
+    if (this.config.dry) {
+      console.log(`[Dry Run] copyFile -> from ${source} to ${destination}`);
+      // If the source is in memory, replicate it to the destination
+      if (this.memoryFS[source] !== undefined) {
+        this.memoryFS[destination] = this.memoryFS[source];
+      }
+      return;
+    }
+    await fs.copyFile(source, destination);
+  }
+
+  /**
+   * Delete (unlink) a file. In dry mode, only remove it from memory.
+   */
+  private async unlinkFile(filePath: string): Promise<void> {
+    if (this.config.dry) {
+      if (this.memoryFS[filePath]) {
+        console.log(`[Dry Run] unlink -> ${filePath}`);
+        delete this.memoryFS[filePath];
+      }
+      return;
+    }
+
+    await fs.promises.unlink(filePath);
+  }
+
+  // =====================================================
+  //                 CORE METHODS
+  // =====================================================
+
   /**
    * Sets the version of all packages.
    * @param version - The new version string.
@@ -104,12 +240,13 @@ class Packager {
 
     for (const pkg of this.packages) {
       const packageJsonPath = path.join(pkg.dir, 'package.json');
-      const packageJson = await fs.readJson(packageJsonPath);
+      const packageJson = await this.readFileJson(packageJsonPath);
       packageJson.version = version;
-      await fs.writeJson(packageJsonPath, packageJson, { spaces: 2 });
+      await this.writeFileJson(packageJsonPath, packageJson);
     }
 
-    if (!this.config.skipGitChecks) {
+    // If not in dry mode, do the actual git commit/tag/push
+    if (!this.config.skipGitChecks && !this.config.dry) {
       try {
         execSync(
           `git checkout ${this.config.gitBranch} && git pull origin ${this.config.gitBranch}`,
@@ -135,11 +272,15 @@ class Packager {
             'Error committing or tagging the version:',
             error.message,
           );
+          throw new Error(`Failed to commit version ${version}: ${error.message}`);
         } else {
           throw error;
         }
-        process.exit(1);
       }
+    } else if (this.config.dry) {
+      console.log(
+        `[Dry Run] Skipping git commit/tag/push for version ${version}`,
+      );
     }
   }
 
@@ -157,8 +298,8 @@ class Packager {
     const sourcePath = path.join(pkg.dir, this.config.distDir, 'index.mjs');
     const destinationPath = path.join(docsDir, `${finalFileName}.mjs`);
 
-    if (fs.existsSync(sourcePath)) {
-      await fs.promises.copyFile(sourcePath, destinationPath);
+    if (this.fileExistsSync(sourcePath)) {
+      await this.copyFile(sourcePath, destinationPath);
       console.log(
         `Copied ${this.config.distDir}/index.mjs from ${packageName} to ${destinationPath}`,
       );
@@ -169,25 +310,16 @@ class Packager {
     }
   }
 
-  //   returns top level files and directories in src dir
-  private async getSrcTopLevelItems(pkgDir: string): Promise<string[]> {
-    const topLevelFiles = await globby('**/*.{ts,tsx}', {
-      cwd: path.join(pkgDir, this.config.srcDir),
-      ignore: this.config.tsupIgnorePatterns,
-    });
-    const result = topLevelFiles.filter(isTopLevelItem);
-
-    return result;
-  }
-
+  /**
+   * Prepare a package.json with the correct exports for publishing.
+   */
   async buildPackageJsonWithExportForPublish(
     packageName: string,
     additionalFiles: string[] = [],
   ): Promise<PackageJSON> {
-
     const pkg = this.findPackage(packageName);
     const packageJsonPath = path.join(pkg.dir, 'package.json');
-    const packageJson = await fs.readJson(packageJsonPath);
+    const packageJson = await this.readFileJson(packageJsonPath);
 
     const topLevelItems = await this.getSrcTopLevelItems(pkg.dir);
     const allFiles = [...topLevelItems, ...additionalFiles];
@@ -207,7 +339,7 @@ class Packager {
   }
 
   /**
-   * Prepares the package.json for publishing.
+   * Prepares the package.json for publishing (but does NOT run the publish command).
    */
   public async preparePackageForPublish(
     packageName: string,
@@ -222,10 +354,87 @@ class Packager {
       config?.additionalFiles,
     );
 
-    await fs.writeJson(packageJsonPath, publishPkgJson, { spaces: 2 });
+    await this.writeFileJson(packageJsonPath, publishPkgJson);
 
     if (config?.cleanup) {
       await this.postPublishCleanup(packageName);
+    }
+  }
+
+  /**
+   * Actually publish a package to npm (or any other registry).
+   * 1. Store the original package.json in memory.
+   * 2. Generate a publish-friendly package.json (with correct exports, etc.).
+   * 3. Use publishConfig if present in the package.json to set flags for `npm publish`.
+   * 4. Revert the package.json to its original state.
+   * 5. Optionally run cleanup if requested.
+   */
+  public async publishPackage(
+    packageName: string,
+    config?: PublishConfig,
+  ): Promise<void> {
+
+
+    this.ensureInitialized();
+
+    const pkg = this.findPackage(packageName);
+
+    if (pkg.packageJson.private) {
+        console.log(`Skipping private package: ${packageName}`)
+        return
+    }
+    const packageJsonPath = path.join(pkg.dir, 'package.json');
+
+    // 1. Read the original package.json and store it
+    const originalPkgJson = await this.readFileJson(packageJsonPath);
+
+    // 2. Build a new publish-friendly package.json
+    const publishPkgJson = await this.buildPackageJsonWithExportForPublish(
+      packageName,
+      config?.additionalFiles,
+    );
+
+    // 3. Write the new package.json
+    await this.writeFileJson(packageJsonPath, publishPkgJson);
+
+    try {
+      // 4. Actually do the publish if not in dry mode
+      if (!this.config.dry) {
+        const { publishConfig } = publishPkgJson;
+        let publishCommand = config?.publishCommand || 'npm publish';
+
+        // If publishConfig has extra flags, add them
+        // (common keys: registry, access, tag, etc.)
+        if (publishConfig && typeof publishConfig === 'object') {
+          const publishConfigTyped = publishConfig as PublishConfigType;
+          const { registry, access, tag } = publishConfigTyped;
+          if (registry) {
+            publishCommand += ` --registry=${registry}`;
+          }
+          if (access) {
+            publishCommand += ` --access=${access}`;
+          }
+          if (tag) {
+            publishCommand += ` --tag ${tag}`;
+          }
+        }
+
+        console.log(`Running "${publishCommand}" in ${pkg.dir}...`);
+        execSync(publishCommand, { cwd: pkg.dir, stdio: 'inherit' });
+      } else {
+        console.log(
+          `[Dry Run] Would run npm publish (or ${config?.publishCommand ?? 'npm publish'}) from ${pkg.dir}`,
+        );
+      }
+    } finally {
+      // 5. Revert package.json to its original content
+      await this.writeFileJson(packageJsonPath, originalPkgJson);
+
+      // 6. If cleanup is requested, do it after the revert
+      if (config?.cleanup) {
+        await this.postPublishCleanup(packageName);
+      }
+      this.clearMemoryFS();
     }
   }
 
@@ -246,8 +455,8 @@ class Packager {
     const pkg = this.findPackage(packageName);
     const readmePath = path.join(pkg.dir, 'README.md');
 
-    if (fs.existsSync(readmePath)) {
-      await fs.promises.unlink(readmePath);
+    if (this.fileExistsSync(readmePath)) {
+      await this.unlinkFile(readmePath);
     }
 
     await this.revertPackageJsonToWorkspace(packageName);
@@ -256,12 +465,10 @@ class Packager {
   /**
    * Reverts the package.json dependencies back to workspace:*.
    */
-  private async revertPackageJsonToWorkspace(
-    packageName: string,
-  ): Promise<void> {
+  private async revertPackageJsonToWorkspace(packageName: string): Promise<void> {
     const pkg = this.findPackage(packageName);
     const packageJsonPath = path.join(pkg.dir, 'package.json');
-    const packageJson = await fs.readJson(packageJsonPath);
+    const packageJson = await this.readFileJson(packageJsonPath);
 
     const dependencies: Record<string, string> = {};
     for (const [depName, depVersion] of Object.entries(
@@ -282,7 +489,7 @@ class Packager {
       dependencies,
     };
 
-    await fs.writeJson(packageJsonPath, updatedPackageJson, { spaces: 2 });
+    await this.writeFileJson(packageJsonPath, updatedPackageJson);
   }
 
   /**
@@ -327,13 +534,11 @@ class Packager {
     );
 
     const packageJsonPath = path.join(pkg.dir, 'package.json');
-    const packageJson = await fs.readJson(packageJsonPath);
+    const packageJson = await this.readFileJson(packageJsonPath);
 
     set(packageJson, this.config.tsupEntryField, tsupEntry);
 
-    await fs.writeJson(packageJsonPath, formatPackageJson(packageJson), {
-      spaces: 2,
-    });
+    await this.writeFileJson(packageJsonPath, formatPackageJson(packageJson));
 
     return tsupEntry;
   }
@@ -346,11 +551,9 @@ class Packager {
 
     const pkg = this.findPackage(packageName);
     const packageJsonPath = path.join(pkg.dir, 'package.json');
-    const packageJson = await fs.readJson(packageJsonPath);
+    const packageJson = await this.readFileJson(packageJsonPath);
 
-    await fs.writeJson(packageJsonPath, formatPackageJson(packageJson), {
-      spaces: 2,
-    });
+    await this.writeFileJson(packageJsonPath, formatPackageJson(packageJson));
   }
 
   /**
@@ -362,7 +565,7 @@ class Packager {
     const pkg = this.findPackage(packageName);
     const packageJsonPath = path.join(pkg.dir, 'package.json');
     const topLevelItems = await this.getSrcTopLevelItems(pkg.dir);
-    const packageJson = await fs.readJson(packageJsonPath);
+    const packageJson = await this.readFileJson(packageJsonPath);
 
     const { rootExports, exportMap } = buildExportMap({
       outputDir: this.config.srcDir,
@@ -378,13 +581,24 @@ class Packager {
     };
 
     console.log(updatedPkgJson);
-
-    await fs.writeJson(packageJsonPath, updatedPkgJson, { spaces: 2 });
+    await this.writeFileJson(packageJsonPath, updatedPkgJson);
     console.log(`Updated package.json exports to use src for ${packageName}`);
+  }
+
+  //   returns top level files and directories in src dir
+  private async getSrcTopLevelItems(pkgDir: string): Promise<string[]> {
+    const topLevelFiles = await globby('**/*.{ts,tsx}', {
+      cwd: path.join(pkgDir, this.config.srcDir),
+      ignore: this.config.tsupIgnorePatterns,
+    });
+    const result = topLevelFiles.filter(isTopLevelItem);
+    return result;
   }
 }
 
-// Helper functions
+// ============================================================================
+//                                Helpers
+// ============================================================================
 
 function isValidVersionFormat(version: string): boolean {
   const regex = /^\d+\.\d+\.\d+(-[\w.]+)?$/;
@@ -487,11 +701,9 @@ function buildExportMap(config: ExportMapConfig): ExportMapResult {
   const { outputDir, isSrc, srcDir } = config;
 
   const files = [...config.files].sort((a, b) => a.localeCompare(b));
-
   const hasTopLevelIndex =
     files.includes('index.ts') || files.includes('index.tsx');
 
-  console.log({ isSrc });
   if (isSrc) {
     return {
       rootExports: {
@@ -508,7 +720,6 @@ function buildExportMap(config: ExportMapConfig): ExportMapResult {
     };
   }
 
-  // Initialize rootExports with all required properties
   const rootExports = {
     main: hasTopLevelIndex ? `${outputDir}/index.js` : '',
     module: hasTopLevelIndex ? `${outputDir}/index.mjs` : '',
@@ -534,23 +745,17 @@ function buildExportMap(config: ExportMapConfig): ExportMapResult {
     './package.json': './package.json',
   };
 
-  // Add subpath exports for non-index files
   files
     .filter((file) => file !== 'index.ts' && file !== 'index.tsx')
     .forEach((file) => {
       const parsedPath = path.parse(file);
       const key = parsedPath.dir || parsedPath.name;
-
-    //   console.log(key, parsedPath);
       exportMap[`./${key}`] = {
         types: `./${outputDir}/${key}.d.ts`,
         import: `./${outputDir}/${key}.mjs`,
         require: `./${outputDir}/${key}.js`,
       };
     });
-
-
-    console.log({exportMap})
 
   return { rootExports, exportMap };
 }
