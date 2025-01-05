@@ -7,6 +7,7 @@ export default defineConfig(async () => {
   const { Packager } = await getPackager();
   const packager = await new Packager({}).init();
   const entry = await packager.generateTsupEntry(name);
+
   return {
     ...baseConfig,
     entry: entry,
