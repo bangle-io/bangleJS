@@ -50,6 +50,9 @@ export async function buildDistExportMap(
   };
 
   const dirName = path.basename(distDir);
+  const typesVersions: Record<string, Record<string, string[]>> = {
+    '*': {},
+  };
 
   // Process each file and map it to the appropriate export path
   filteredFiles.forEach((filePath) => {
@@ -65,6 +68,9 @@ export async function buildDistExportMap(
 
     if (isTypes(filePath)) {
       set(exportMap, [exportKey, 'types'], `./${dirName}/${filePath}`);
+      // Add to typesVersions
+      const versionKey = exportKey === '.' ? '.' : entryPoint;
+      set(typesVersions, ['*', versionKey], [`./${dirName}/${filePath}`]);
     } else if (isImport(filePath)) {
       set(exportMap, [exportKey, 'import'], `./${dirName}/${filePath}`);
       set(exportMap, [exportKey, 'default'], `./${dirName}/${filePath}`);
@@ -79,10 +85,21 @@ export async function buildDistExportMap(
     return a.localeCompare(b);
   });
 
+  // Sort typesVersions
+  typesVersions['*'] = sortObject(
+    typesVersions['*'] as Record<string, string[]>,
+    (a, b) => {
+      if (a === '.') return -1;
+      if (b === '.') return 1;
+      return a.localeCompare(b);
+    },
+  );
+
   const result = {
     main: `./${dirName}/index.cjs`,
     module: `./${dirName}/index.js`,
     types: `./${dirName}/index.d.ts`,
+    typesVersions,
     exports: exportMap,
   };
 

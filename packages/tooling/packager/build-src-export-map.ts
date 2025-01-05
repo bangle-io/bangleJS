@@ -81,8 +81,12 @@ export async function buildSrcExportMap(
       ...pkg.packageJson,
       ...result,
     });
-    (finalPackageJson as any).module = undefined;
-    (finalPackageJson as any).types = undefined;
+    // biome-ignore lint/performance/noDelete: <explanation>
+    delete (finalPackageJson as any).module;
+    // biome-ignore lint/performance/noDelete: <explanation>
+    delete (finalPackageJson as any).types;
+    // biome-ignore lint/performance/noDelete: <explanation>
+    delete (finalPackageJson as any).typesVersions;
 
     await fs.writeJSON(path.join(pkg.dir, 'package.json'), finalPackageJson, {
       spaces: 2,
