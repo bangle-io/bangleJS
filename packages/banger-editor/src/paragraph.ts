@@ -17,7 +17,6 @@ import {
   parentHasDirectParentOfType,
 } from './pm-utils';
 
-import type { NodeSpec } from './pm';
 import {
   type CollectionType,
   collection,
@@ -26,6 +25,7 @@ import {
   setPriority,
 } from './common';
 import { PRIORITY } from './common';
+import type { NodeSpec } from './pm';
 import { findParentNodeOfType } from './pm-utils';
 import { type KeyCode, getNodeType } from './pm-utils';
 

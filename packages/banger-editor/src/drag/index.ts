@@ -1,6 +1,6 @@
+import { collection } from '../common';
 import type { PMNode } from '../pm';
 import type { EditorState } from '../pm';
-import { collection } from '../common';
 import { createDragHandleEventsPlugin } from './drag-handle';
 import { createDragHandleViewPlugin } from './drag-handle-view';
 import type {

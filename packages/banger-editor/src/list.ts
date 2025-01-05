@@ -1,5 +1,13 @@
 import type { Command, EditorState, PMNode } from './pm';
 
+import type { MarkdownSerializerState } from 'prosemirror-markdown';
+import {
+  type CollectionType,
+  PRIORITY,
+  collection,
+  keybinding,
+  setPriority,
+} from './common';
 import {
   type ListAttributes,
   type ListKind,
@@ -18,15 +26,7 @@ import {
   wrappingListInputRule,
 } from './pm';
 import { inputRules } from './pm';
-import {
-  type CollectionType,
-  PRIORITY,
-  collection,
-  keybinding,
-  setPriority,
-} from './common';
 import { type PluginContext, findParentNode, getNodeType } from './pm-utils';
-import type { MarkdownSerializerState } from 'prosemirror-markdown';
 
 const LIST_KIND = {
   BULLET: 'bullet',

@@ -8,8 +8,8 @@ import {
   setBlockType,
 } from './pm';
 
-import { inputRules, textblockTypeInputRule } from './pm';
 import { type CollectionType, collection, isMac, keybinding } from './common';
+import { inputRules, textblockTypeInputRule } from './pm';
 import { findParentNodeOfType } from './pm-utils';
 import {
   type KeyCode,

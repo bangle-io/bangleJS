@@ -1,8 +1,8 @@
+import { type CollectionType, collection, keybinding } from './common';
 import { toggleMark } from './pm';
 import { inputRules } from './pm';
 import type { MarkSpec, Schema } from './pm';
 import type { Command, EditorState } from './pm';
-import { type CollectionType, collection, keybinding } from './common';
 import {
   getMarkType,
   isMarkActiveInSelection,

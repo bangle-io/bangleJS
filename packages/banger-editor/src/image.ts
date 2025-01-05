@@ -1,8 +1,8 @@
+import { type CollectionType, collection } from './common';
 import { type Command, NodeSelection, Plugin, PluginKey } from './pm';
 import { InputRule, inputRules } from './pm';
 import type { NodeSpec, NodeType, PMNode } from './pm';
 import type { EditorProps, EditorView } from './pm';
-import { type CollectionType, collection } from './common';
 import { type PluginContext, getNodeType, safeInsert } from './pm-utils';
 
 export type ImageConfig = {

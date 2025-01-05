@@ -1,7 +1,7 @@
-import type { Selection } from '../pm';
-import { inputRules } from '../pm';
 import { collection } from '../common';
 import type { Logger } from '../common';
+import type { Selection } from '../pm';
+import { inputRules } from '../pm';
 import { triggerInputRule } from './input-rule';
 import { suggestionKeymap } from './keymap';
 import {

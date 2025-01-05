@@ -1,7 +1,7 @@
+import { type CollectionType, collection, keybinding } from './common';
 import type { Command, EditorState, NodeSpec, NodeType, Schema } from './pm';
 import { setBlockType } from './pm';
 import { inputRules, textblockTypeInputRule } from './pm';
-import { type CollectionType, collection, keybinding } from './common';
 import { findParentNodeOfType } from './pm-utils';
 import { insertEmptyParagraphBelowNode } from './pm-utils';
 import {

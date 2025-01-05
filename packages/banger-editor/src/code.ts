@@ -10,8 +10,8 @@ import {
   toggleMark,
 } from './pm';
 
-import { inputRules } from './pm';
 import { type CollectionType, collection, keybinding } from './common';
+import { inputRules } from './pm';
 import {
   getMarkType,
   isMarkActiveInSelection,

@@ -1,9 +1,9 @@
+import { type CollectionType, collection } from '../common';
 import { type Command, type EditorState, PluginKey } from '../pm';
 import { Plugin as PMPlugin } from '../pm';
 import type { EditorProps } from '../pm';
 import { InputRule, inputRules } from '../pm';
 import type { Mark, MarkSpec, PMNode } from '../pm';
-import { type CollectionType, collection } from '../common';
 import { filterCommand } from '../pm-utils';
 import { isMarkActiveInSelection, mapSlice, matchAllPlus } from '../pm-utils';
 import { getMarkType } from '../pm-utils';

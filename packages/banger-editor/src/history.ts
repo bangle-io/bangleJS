@@ -1,7 +1,7 @@
-import { history, redo, undo } from './pm';
 import { keybinding } from './common';
 import { collection } from './common/collection';
 import { isMac } from './common/misc';
+import { history, redo, undo } from './pm';
 
 export type HistoryConfig = {
   depth?: number;

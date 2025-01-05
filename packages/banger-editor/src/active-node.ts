@@ -1,6 +1,6 @@
+import { CollectionType, collection } from './common/collection';
 import { type EditorState, Plugin, PluginKey } from './pm';
 import { Decoration, DecorationSet } from './pm';
-import { CollectionType, collection } from './common/collection';
 import { findParentNode } from './pm-utils';
 
 export interface ActiveNodeConfig {

@@ -1,7 +1,7 @@
+import { type CollectionType, collection, keybinding } from './common';
 import type { Command, NodeType } from './pm';
 import { InputRule, inputRules } from './pm';
 import type { NodeSpec, Schema } from './pm';
-import { type CollectionType, collection, keybinding } from './common';
 import { safeInsert } from './pm-utils';
 import {
   type PluginContext,

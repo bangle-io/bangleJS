@@ -1,10 +1,10 @@
 import { nodes as schemaBasicNodes } from 'prosemirror-schema-basic';
-import type { Command, NodeSpec } from './pm';
-import { baseKeymap } from './pm';
-import { undoInputRule } from './pm';
 import { keybinding } from './common';
 import { type CollectionType, collection, setPriority } from './common';
 import { PRIORITY } from './common';
+import type { Command, NodeSpec } from './pm';
+import { baseKeymap } from './pm';
+import { undoInputRule } from './pm';
 import { safeInsert } from './pm-utils';
 
 export type BaseConfig = {

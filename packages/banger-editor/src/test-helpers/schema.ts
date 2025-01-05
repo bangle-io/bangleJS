@@ -1,8 +1,8 @@
-import { type DOMOutputSpec, type PMNode, Schema } from '../pm';
 import {
-  nodes as schemaBasicNodes,
   marks as schemaBasicMarks,
+  nodes as schemaBasicNodes,
 } from 'prosemirror-schema-basic';
+import { type DOMOutputSpec, type PMNode, Schema } from '../pm';
 
 const {
   doc,

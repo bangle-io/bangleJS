@@ -1,9 +1,9 @@
+import { type CollectionType, collection, keybinding } from './common';
 import type { Command } from './pm';
 import { exitCode } from './pm';
 import { chainCommands } from './pm';
 import type { NodeSpec } from './pm';
 import type { DOMOutputSpec } from './pm';
-import { type CollectionType, collection, keybinding } from './common';
 import { getNodeType } from './pm-utils';
 
 export type HardBreakConfig = {

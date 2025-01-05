@@ -1,9 +1,9 @@
+import { keybinding } from './common';
+import { type CollectionType, collection } from './common/collection';
 import type { MarkSpec } from './pm';
 import { toggleMark } from './pm';
 import { inputRules } from './pm';
 import type { Command, EditorState } from './pm';
-import { keybinding } from './common';
-import { type CollectionType, collection } from './common/collection';
 import {
   type PluginContext,
   getMarkType,
