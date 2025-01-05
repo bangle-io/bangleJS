@@ -1,6 +1,6 @@
 ## Banger Editor: ProseMirror Made Easy
 
-Banger Editor is a collection of ProseMirror editing components, designed for speed and efficiency.
+Banger Editor aims to provide missing pieces of ProseMirror components so you don't have to build them from scratch. And trust me, you don't want to build them from scratch.
 
 **Why Banger Editor?**
 
