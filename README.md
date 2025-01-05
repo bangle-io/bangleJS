@@ -1,10 +1,8 @@
-![Node.js CI](https://github.com/bangle-io/banger/workflows/Node.js%20CI/badge.svg) [![Netlify Status](https://api.netlify.com/api/v1/badges/6d032d9e-c63a-44e6-ae6d-d36a4905a147/deploy-status)](https://app.netlify.com/sites/bangle/deploys)
 
-## psst we have great documentation at https://banger
 
 ## What is Banger Editor ?
 
-Banger Editor is a collection of prosemirror code for building powerful editing experiences.
+Banger Editor is a collection of ProseMirror code for building powerful editing experiences.
 
 - :battery: **Batteries included**\
 We expose plenty of Prosemirror packages to help you get started with your Editor.
