@@ -78,7 +78,6 @@
     "./history": "./src/history/index.ts",
     "./inputrules": "./src/inputrules/index.ts",
     "./keymap": "./src/keymap/index.ts",
-    "./kushan": "./src/kushan.ts",
     "./model": "./src/model/index.ts",
     "./orderedmap": "./src/orderedmap/index.ts",
     "./package.json": "./package.json",
