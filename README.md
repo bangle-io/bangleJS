@@ -21,7 +21,6 @@ Banger is headless and provides you shadcn/ui like components that you can copy 
 
 ## Getting started
 
-Installation 
 
 ```
 npm install banger-editor
@@ -30,8 +29,6 @@ npm install banger-editor
 > [!NOTE]
 > Example Repo: https://github.com/kepta/banger-vite-react-starter
 
-
-### Installation
 
 **Peer dependencies** As you can see Banger is not traditional Prosemirror wrapper library. It expects you to be familiar with prosemirror and its packages and use them directly. It expects some of the `prosemirror-*` packages to be installed in your project.
 
