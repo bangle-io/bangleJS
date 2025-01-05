@@ -7,12 +7,7 @@
     "url": "http://github.com/kepta"
   },
   "description": "A modern collection of ProseMirror packages for building powerful editing experiences",
-  "keywords": [
-    "prosemirror",
-    "rich text editor",
-    "editor",
-    "typescript"
-  ],
+  "keywords": ["prosemirror", "rich text editor", "editor", "typescript"],
   "homepage": "https://bangle.io",
   "bugs": {
     "url": "https://github.com/bangle-io/banger-editor/issues"
@@ -27,47 +22,62 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./src/index.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": ["dist", "src"],
   "scripts": {
     "prepublishOnly": "tsx ../../packages/tooling/scripts/prepublish-run.ts",
     "postpublish": "tsx ../../packages/tooling/scripts/postpublish-run.ts",
     "build:tsup": "tsup --config tsup.config.ts"
   },
   "dependencies": {
-    "markdown-it": "^14.0.0",
-    "@types/markdown-it": "^14.1.2"
+    "@types/markdown-it": "^14.1.2",
+    "markdown-it": "^14.1.0"
   },
   "devDependencies": {
+    "@bangle.dev/packager": "workspace:*",
     "@types/markdown-it": "^14.1.2",
     "prosemirror-markdown": "^1.13.1",
     "prosemirror-model": "^1.24.1",
     "tsconfig": "workspace:*",
     "tsup": "^8.3.5",
-    "tsup-config": "workspace:*",
-    "@bangle.dev/packager": "workspace:*"
+    "tsup-config": "workspace:*"
   },
   "peerDependencies": {
-    "prosemirror-model": "*",
     "prosemirror-markdown": "*"
   },
   "exports": {
-    ".": "./src/index.ts",
-    "./list-markdown": "./src/list-markdown.ts",
-    "./markdown": "./src/markdown.ts",
-    "./package.json": "./package.json",
-    "./pm": "./src/pm.ts",
-    "./tokenizer": "./src/tokenizer.ts"
-  },
-  "peerDependenciesMeta": {
-    "prosemirror-markdown": {
-      "optional": false
+    ".": {
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     },
-    "prosemirror-model": {
-      "optional": false
+    "./list-markdown": {
+      "require": "./dist/list-markdown.cjs",
+      "types": "./dist/list-markdown.d.ts",
+      "import": "./dist/list-markdown.js",
+      "default": "./dist/list-markdown.js"
+    },
+    "./markdown": {
+      "require": "./dist/markdown.cjs",
+      "types": "./dist/markdown.d.ts",
+      "import": "./dist/markdown.js",
+      "default": "./dist/markdown.js"
+    },
+    "./package.json": "./package.json",
+    "./pm": {
+      "require": "./dist/pm.cjs",
+      "types": "./dist/pm.d.ts",
+      "import": "./dist/pm.js",
+      "default": "./dist/pm.js"
+    },
+    "./tokenizer": {
+      "require": "./dist/tokenizer.cjs",
+      "types": "./dist/tokenizer.d.ts",
+      "import": "./dist/tokenizer.js",
+      "default": "./dist/tokenizer.js"
     }
   },
   "sideEffects": false,
@@ -78,6 +88,15 @@
       "markdown": "src/markdown.ts",
       "pm": "src/pm.ts",
       "tokenizer": "src/tokenizer.ts"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      ".": ["./dist/index.d.ts"],
+      "list-markdown": ["./dist/list-markdown.d.ts"],
+      "markdown": ["./dist/markdown.d.ts"],
+      "pm": ["./dist/pm.d.ts"],
+      "tokenizer": ["./dist/tokenizer.d.ts"]
     }
   }
 }

@@ -1,0 +1,136 @@
+{
+  "name": "banger-editor",
+  "version": "2.0.0-alpha.10",
+  "author": {
+    "name": "Kushan Joshi",
+    "email": "0o3ko0@gmail.com",
+    "url": "http://github.com/kepta"
+  },
+  "description": "A modern collection of ProseMirror packages for building powerful editing experiences",
+  "keywords": ["prosemirror", "rich text editor", "editor", "typescript"],
+  "homepage": "https://bangle.io",
+  "bugs": {
+    "url": "https://github.com/bangle-io/banger-editor/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bangle-io/banger-editor.git",
+    "directory": "packages/prosemirror-all"
+  },
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./src/index.ts",
+  "files": ["dist", "src"],
+  "scripts": {
+    "prepublishOnly": "tsx ../../packages/tooling/scripts/prepublish-run.ts",
+    "postpublish": "tsx ../../packages/tooling/scripts/postpublish-run.ts",
+    "build:tsup": "tsup --config tsup.config.ts"
+  },
+  "dependencies": {
+    "jotai": "^2.11.0"
+  },
+  "devDependencies": {
+    "@types/orderedmap": "^2.0.0",
+    "tsconfig": "workspace:*",
+    "tsup": "^8.3.5",
+    "tsup-config": "workspace:*",
+    "@bangle.dev/packager": "workspace:*",
+    "prosemirror-markdown": "^1.13.1"
+  },
+  "peerDependencies": {
+    "orderedmap": "*",
+    "prosemirror-commands": "*",
+    "prosemirror-dropcursor": "*",
+    "prosemirror-flat-list": "*",
+    "prosemirror-gapcursor": "*",
+    "prosemirror-history": "*",
+    "prosemirror-inputrules": "*",
+    "prosemirror-keymap": "*",
+    "prosemirror-model": "*",
+    "prosemirror-schema-basic": "*",
+    "prosemirror-state": "*",
+    "prosemirror-test-builder": "*",
+    "prosemirror-transform": "*",
+    "prosemirror-view": "*"
+  },
+  "peerDependenciesMeta": {
+    "orderedmap": {
+      "optional": true
+    },
+    "prosemirror-commands": {
+      "optional": true
+    },
+    "prosemirror-dropcursor": {
+      "optional": true
+    },
+    "prosemirror-flat-list": {
+      "optional": true
+    },
+    "prosemirror-gapcursor": {
+      "optional": true
+    },
+    "prosemirror-history": {
+      "optional": true
+    },
+    "prosemirror-inputrules": {
+      "optional": true
+    },
+    "prosemirror-keymap": {
+      "optional": true
+    },
+    "prosemirror-model": {
+      "optional": false
+    },
+    "prosemirror-schema-basic": {
+      "optional": true
+    },
+    "prosemirror-state": {
+      "optional": false
+    },
+    "prosemirror-test-builder": {
+      "optional": true
+    },
+    "prosemirror-transform": {
+      "optional": false
+    },
+    "prosemirror-view": {
+      "optional": false
+    }
+  },
+  "sideEffects": false,
+  "bangleConfig": {
+    "tsupEntry": {
+      "index": "src/index.ts",
+      "active-node": "src/active-node.ts",
+      "base": "src/base.ts",
+      "blockquote": "src/blockquote.ts",
+      "bold": "src/bold.ts",
+      "code": "src/code.ts",
+      "code-block": "src/code-block.ts",
+      "common": "src/common/index.ts",
+      "drag": "src/drag/index.ts",
+      "drop-gap-cursor": "src/drop-gap-cursor.ts",
+      "hard-break": "src/hard-break.ts",
+      "heading": "src/heading.ts",
+      "history": "src/history.ts",
+      "horizontal-rule": "src/horizontal-rule.ts",
+      "hover": "src/hover.ts",
+      "image": "src/image.ts",
+      "italic": "src/italic.ts",
+      "link": "src/link/index.ts",
+      "list": "src/list.ts",
+      "paragraph": "src/paragraph.ts",
+      "placeholder": "src/placeholder.ts",
+      "pm": "src/pm/index.ts",
+      "pm-utils": "src/pm-utils/index.ts",
+      "store": "src/store/index.ts",
+      "strike": "src/strike.ts",
+      "suggestions": "src/suggestions/index.ts",
+      "test-helpers": "src/test-helpers/index.ts",
+      "underline": "src/underline.ts"
+    }
+  }
+}
