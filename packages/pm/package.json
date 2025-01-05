@@ -73,6 +73,7 @@
     "prosemirror-schema-basic": "*",
     "prosemirror-state": "*",
     "prosemirror-transform": "*",
+    "prosemirror-test-builder": "*",
     "prosemirror-view": "*"
   },
   "exports": {
@@ -130,6 +131,9 @@
     },
     "prosemirror-state": {
       "optional": false
+    },
+    "prosemirror-test-builder": {
+      "optional": true
     },
     "prosemirror-transform": {
       "optional": false
