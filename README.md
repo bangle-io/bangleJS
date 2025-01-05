@@ -29,10 +29,9 @@ Installation
 npm install banger-editor
 ```
 
-Create an `editor.ts` file and paste the following:
+> [!NOTE]
+> Example Repo: https://github.com/kepta/banger-vite-react-starter
 
-```
-```
 
 ### Installation
 
@@ -44,29 +43,3 @@ If you are starting blank, I recommend installing all the following `prosemirror
 npm install orderedmap prosemirror-commands prosemirror-dropcursor prosemirror-flat-list prosemirror-gapcursor prosemirror-history prosemirror-inputrules prosemirror-keymap prosemirror-model prosemirror-schema-basic prosemirror-state prosemirror-transform prosemirror-view
 ```
 
-> Modern bundlers will remove the unused packages from your bundle, so you don't have to worry about bundle size.
-
-> If you know what you are doing or using a Prosemirror wrapper library like `tiptap` you can skip installing the above packages as they might already be installed in your project.
-
-**Installing Banger**
-
-```sh
-npm install @bangle.dev/pm @bangle.dev/banger
-```
-
-### Prosemirror Imports
-
-You can import the prosemirror packages from `@bangle.dev/pm` (which is a convenience re-export of `prosemirror-*` packages).
-
-```ts
-// Option 1: Recommended
-import { EditorState, EditorView } from '@bangle.dev/pm';
-
-// Option 2: Importing specific packages
-import { EditorState } from '@bangle.dev/pm/state';
-import { EditorView } from '@bangle.dev/pm/view';
-
-// Option 3: Use prosemirror-* packages directly
-import { EditorState } from 'prosemirror-state';
-import { EditorView } from 'prosemirror-view';
-```
