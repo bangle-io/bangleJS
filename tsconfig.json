@@ -2,36 +2,56 @@
     "$schema": "https://json.schemastore.org/tsconfig",
     "display": "Default",
     "compilerOptions": {
+        "allowImportingTsExtensions": true,
+        "allowJs": true,
+        "checkJs": true,
+        "composite": true,
+        "declaration": true,
+        "declarationMap": true,
+        "resolvePackageJsonImports": true,
         "esModuleInterop": true,
-        "exactOptionalPropertyTypes": true,
         "forceConsistentCasingInFileNames": true,
-        "incremental": true,
+        "importHelpers": true,
         "isolatedModules": true,
         "jsx": "react-jsx",
-        "module": "esnext",
+        "module": "ES2020",
         "moduleResolution": "bundler",
         "noEmit": true,
         "noEmitOnError": false,
-        "resolveJsonModule": true,
         "noFallthroughCasesInSwitch": true,
         "noImplicitAny": true,
-        "noImplicitOverride": true,
         "noImplicitReturns": true,
-        // "noPropertyAccessFromIndexSignature": true,
+        "noPropertyAccessFromIndexSignature": false,
         "noUncheckedIndexedAccess": true,
         "noUnusedLocals": false,
-        "noUnusedParameters": false,
-        "preserveWatchOutput": true,
+        "noUnusedParameters": true,
         "pretty": true,
+        "removeComments": false,
+        "resolveJsonModule": true,
         "skipLibCheck": true,
         "strict": true,
-        "strictNullChecks": true,
         "stripInternal": true,
-        "target": "es2022",
+        // Emit Options
+        // General Options
+        // JavaScript Support
+        // Module Resolution
+        // Strict Type-Checking Options
+        // JSX
+        // Target and Libraries
+        "target": "ES2020",
+        "lib": [
+            "dom",
+            "ES2020",
+            "dom.iterable",
+            "webworker"
+        ],
+        // Miscellaneous
+        "newLine": "lf",
+        "useDefineForClassFields": true
     },
     "exclude": [
         "node_modules",
-        "dist",
-        "lib"
+        "**/dist/**",
+        "**/lib/**",
     ]
 }

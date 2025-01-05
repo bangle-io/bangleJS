@@ -38,21 +38,21 @@
     "build:tsup": "tsup --config tsup.config.ts"
   },
   "dependencies": {
-    "markdown-it": "^14.0.0",
-    "@types/markdown-it": "^14.1.2"
+    "@types/markdown-it": "^14.1.2",
+    "markdown-it": "^14.1.0"
   },
   "devDependencies": {
+    "@bangle.dev/packager": "workspace:*",
     "@types/markdown-it": "^14.1.2",
     "prosemirror-markdown": "^1.13.1",
     "prosemirror-model": "^1.24.1",
     "tsconfig": "workspace:*",
     "tsup": "^8.3.5",
-    "tsup-config": "workspace:*",
-    "@bangle.dev/packager": "workspace:*"
+    "tsup-config": "workspace:*"
   },
   "peerDependencies": {
-    "prosemirror-model": "*",
-    "prosemirror-markdown": "*"
+    "prosemirror-markdown": "*",
+    "prosemirror-model": "*"
   },
   "exports": {
     ".": "./src/index.ts",

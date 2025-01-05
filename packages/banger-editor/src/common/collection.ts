@@ -5,7 +5,7 @@ import {
   type MarkSpec,
   type NodeSpec,
   OrderedMap,
-  Plugin,
+  PMPlugin,
 } from '../pm';
 import type { Schema } from '../pm';
 import { getGlobalConfig } from './global-config';
@@ -46,8 +46,8 @@ function isPlainObject(value: any) {
   );
 }
 
-function getMetadata(item: Plugin | NodeSpec | MarkSpec): Metadata | null {
-  if (item instanceof Plugin || isPlainObject(item)) {
+function getMetadata(item: PMPlugin | NodeSpec | MarkSpec): Metadata | null {
+  if (item instanceof PMPlugin || isPlainObject(item)) {
     return (item as any)[BANGLE_METADATA] ?? null;
   }
   return null;
@@ -65,7 +65,7 @@ export function setPluginPriority<T extends PluginFactory>(
     }) as T;
   }
 
-  if (plugin instanceof Plugin) {
+  if (plugin instanceof PMPlugin) {
     setMetadata(plugin, { priority, debugInfo });
     return plugin;
   }
@@ -78,13 +78,13 @@ export function setPluginPriority<T extends PluginFactory>(
 }
 
 function setMetadata(
-  item: null | Plugin | NodeSpec | MarkSpec,
+  item: null | PMPlugin | NodeSpec | MarkSpec,
   metadata: Partial<Metadata>,
 ): void {
   if (item == null) {
     return;
   }
-  if (item instanceof Plugin || isPlainObject(item)) {
+  if (item instanceof PMPlugin || isPlainObject(item)) {
     const existingMetadata: Metadata = getMetadata(item) ?? {};
     (item as any)[BANGLE_METADATA] = {
       ...existingMetadata,
@@ -94,7 +94,7 @@ function setMetadata(
 }
 
 export function setPriority<
-  const T extends null | Plugin | NodeSpec | MarkSpec,
+  const T extends null | PMPlugin | NodeSpec | MarkSpec,
 >(item: T, priority: number): T {
   setMetadata(item, { priority });
 
@@ -110,9 +110,9 @@ type PluginFactoryContext = {
 };
 
 type PluginFactory =
-  | Plugin
-  | Plugin[]
-  | ((options: PluginFactoryContext) => Plugin | Plugin[] | null);
+  | PMPlugin
+  | PMPlugin[]
+  | ((options: PluginFactoryContext) => PMPlugin | PMPlugin[] | null);
 
 type MarkdownConfig = {
   nodes?: Record<string, MarkdownNodeConfig>;
@@ -291,8 +291,8 @@ export function resolve(
   const resolvePlugins = (ctx: PluginFactoryContext) => {
     const unsortedPlugins = normalizedCollections.flatMap((collection) => {
       const normalize = (
-        plugin: Plugin | (Plugin | null)[] | null,
-      ): Plugin[] => {
+        plugin: PMPlugin | (PMPlugin | null)[] | null,
+      ): PMPlugin[] => {
         return (Array.isArray(plugin) ? plugin : [plugin]).filter(
           (r) => r != null,
         );
