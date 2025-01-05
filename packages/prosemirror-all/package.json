@@ -31,6 +31,12 @@
     "prosemirror-transform": "^1.10.2",
     "prosemirror-view": "^1.37.1"
   },
+  "devDependencies": {
+    "tsconfig": "workspace:*",
+    "tsup": "^8.3.5",
+    "tsup-config": "workspace:*",
+    "@bangle.dev/packager": "workspace:*"
+  },
   "homepage": "https://bangle.io",
   "license": "AGPL-3.0-or-later",
   "main": "",
@@ -43,7 +49,11 @@
     "url": "https://github.com/bangle-io/banger-editor.git",
     "directory": "packages/prosemirror-all"
   },
-  "scripts": {},
+  "scripts": {
+    "prepublishOnly": "tsx ../../packages/tooling/scripts/prepublish-run.ts",
+    "postpublish": "tsx ../../packages/tooling/scripts/postpublish-run.ts",
+    "build:tsup": "tsup --config tsup.config.ts"
+  },
   "types": "",
   "exports": {
     "./package.json": "./package.json"

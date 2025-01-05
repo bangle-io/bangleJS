@@ -21,6 +21,6 @@
     "lint:fix": "pnpm biome check --fix",
     "test:ci": "pnpm vitest run",
     "typecheck": "tsc -b",
-    "pkg-prepublish": "tsx packages/tooling/scripts/prepublish-run.ts"
+    "publish-alpha": "pnpm -r --filter \"./packages/**\"  publish --tag alpha --otp ${npm_config_otp} --access public"
   }
 }
