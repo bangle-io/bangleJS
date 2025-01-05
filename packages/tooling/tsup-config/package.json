@@ -1,0 +1,17 @@
+{
+  "name": "tsup-config",
+  "version": "0.0.0",
+  "devDependencies": {
+    "tsup": "^8.3.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "@bangle.dev/packager": "workspace:*"
+  },
+  "license": "MIT",
+  "main": "index.mjs",
+  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
+  "types": "index.d.mts"
+}

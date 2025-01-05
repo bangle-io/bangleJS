@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Default",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "exactOptionalPropertyTypes": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx",
+    "module": "esnext",
+    "lib": [
+      "esnext",
+      "DOM"
+    ],
+    "isolatedModules": true,
+    "moduleResolution": "bundler",
+    "noEmit": true,
+    "noEmitOnError": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "emitDeclarationOnly": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": false,
+    "declarationMap": true,
+    "noUnusedParameters": false,
+    "pretty": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "preserveWatchOutput": true,
+    "stripInternal": true,
+    "target": "ES2020"
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

@@ -1,13 +1,6 @@
 {
   "name": "@bangle.dev/pm",
-  "description": "",
-  "license": "AGPL-3.0-or-later",
-  "version": "0.0.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bangle-io/bangle-io.git",
-    "directory": "packages/js-lib/pm"
-  },
+  "version": "1.0.0",
   "authors": [
     {
       "name": "Kushan Joshi",
@@ -15,20 +8,30 @@
       "web": "http://github.com/kepta"
     }
   ],
+  "description": "",
   "homepage": "https://bangle.io",
-  "bugs": "https://github.com/bangle-io/bangle-io/issues",
-  "banglePackageConfig": {
-    "env": "universal",
-    "kind": "js-util"
+  "bugs": "https://github.com/bangle-io/banger-editor/issues",
+  "license": "AGPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bangle-io/banger-editor.git",
+    "directory": "packages/pm"
   },
-  "main": "src/index.ts",
-  "module": "src/index.ts",
+  "type": "module",
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {},
+  "main": "./src/index.ts",
+  "files": ["lib"],
+  "scripts": {
+    "prepublishOnly": "tsx ../../packages/tooling/scripts/prepublish-run.ts",
+    "postpublish": "tsx ../../packages/tooling/scripts/postpublish-run.ts",
+    "build:tsup": "tsup --config tsup.config.ts"
+  },
   "dependencies": {
-    "@types/orderedmap": "^2.0.0",
+    "@types/orderedmap": "^2.0.0"
+  },
+  "devDependencies": {
     "orderedmap": "^2.1.1",
     "prosemirror-commands": "^1.6.2",
     "prosemirror-dropcursor": "^1.8.1",
@@ -37,14 +40,112 @@
     "prosemirror-history": "^1.4.1",
     "prosemirror-inputrules": "^1.4.0",
     "prosemirror-keymap": "^1.2.2",
-    "prosemirror-markdown": "^1.13.1",
     "prosemirror-model": "^1.24.1",
     "prosemirror-schema-basic": "^1.2.3",
-    "prosemirror-schema-list": "^1.5.0",
     "prosemirror-state": "^1.4.3",
     "prosemirror-test-builder": "^1.1.1",
     "prosemirror-transform": "^1.10.2",
-    "prosemirror-view": "^1.37.1"
+    "prosemirror-view": "^1.37.1",
+    "tsconfig": "workspace:*",
+    "tsup": "^8.3.5",
+    "tsup-config": "workspace:*",
+    "@bangle.dev/packager": "workspace:*"
   },
-  "devDependencies": {}
+  "peerDependencies": {
+    "orderedmap": "*",
+    "prosemirror-commands": "*",
+    "prosemirror-dropcursor": "*",
+    "prosemirror-flat-list": "*",
+    "prosemirror-gapcursor": "*",
+    "prosemirror-history": "*",
+    "prosemirror-inputrules": "*",
+    "prosemirror-keymap": "*",
+    "prosemirror-model": "*",
+    "prosemirror-schema-basic": "*",
+    "prosemirror-state": "*",
+    "prosemirror-transform": "*",
+    "prosemirror-view": "*"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./commands": "./src/commands/index.ts",
+    "./dropcursor": "./src/dropcursor/index.ts",
+    "./flat-list": "./src/flat-list/index.ts",
+    "./gapcursor": "./src/gapcursor/index.ts",
+    "./history": "./src/history/index.ts",
+    "./inputrules": "./src/inputrules/index.ts",
+    "./keymap": "./src/keymap/index.ts",
+    "./kushan": "./src/kushan.ts",
+    "./model": "./src/model/index.ts",
+    "./orderedmap": "./src/orderedmap/index.ts",
+    "./package.json": "./package.json",
+    "./schema-basic": "./src/schema-basic/index.ts",
+    "./state": "./src/state/index.ts",
+    "./transform": "./src/transform/index.ts",
+    "./view": "./src/view/index.ts"
+  },
+  "banglePackageConfig": {
+    "env": "universal",
+    "kind": "js-util"
+  },
+  "peerDependenciesMeta": {
+    "orderedmap": {
+      "optional": true
+    },
+    "prosemirror-commands": {
+      "optional": true
+    },
+    "prosemirror-dropcursor": {
+      "optional": true
+    },
+    "prosemirror-flat-list": {
+      "optional": true
+    },
+    "prosemirror-gapcursor": {
+      "optional": true
+    },
+    "prosemirror-history": {
+      "optional": true
+    },
+    "prosemirror-inputrules": {
+      "optional": true
+    },
+    "prosemirror-keymap": {
+      "optional": true
+    },
+    "prosemirror-model": {
+      "optional": false
+    },
+    "prosemirror-schema-basic": {
+      "optional": true
+    },
+    "prosemirror-state": {
+      "optional": false
+    },
+    "prosemirror-transform": {
+      "optional": false
+    },
+    "prosemirror-view": {
+      "optional": false
+    }
+  },
+  "bangleConfig": {
+    "tsupEntry": {
+      "index": "src/index.ts",
+      "commands": "src/commands/index.ts",
+      "dropcursor": "src/dropcursor/index.ts",
+      "flat-list": "src/flat-list/index.ts",
+      "gapcursor": "src/gapcursor/index.ts",
+      "history": "src/history/index.ts",
+      "inputrules": "src/inputrules/index.ts",
+      "keymap": "src/keymap/index.ts",
+      "kushan": "src/kushan.ts",
+      "model": "src/model/index.ts",
+      "orderedmap": "src/orderedmap/index.ts",
+      "schema-basic": "src/schema-basic/index.ts",
+      "state": "src/state/index.ts",
+      "transform": "src/transform/index.ts",
+      "view": "src/view/index.ts"
+    }
+  }
 }

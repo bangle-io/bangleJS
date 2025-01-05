@@ -1,0 +1,29 @@
+{
+  "name": "@bangle.dev/packager",
+  "version": "1.0.0",
+  "dependencies": {
+    "@jest/globals": "^29.7.0",
+    "@tsconfig/node18": "^18.2.4",
+    "@types/fs-extra": "^11.0.4",
+    "colord": "^2.9.3",
+    "fs-extra": "^11.2.0",
+    "globby": "^14.0.2",
+    "p-map": "^7.0.3",
+    "postcss": "^8.4.49",
+    "prettier": "3.4.2",
+    "syncpack": "^13.0.0",
+    "ts-node": "^10.9.2",
+    "type-fest": "^4.31.0",
+    "zod": "^3.24.1",
+    "@manypkg/get-packages": "^2.2.2",
+    "@manypkg/find-root": "^2.2.3",
+    "@manypkg/tools": "^1.1.2",
+    "lodash": "^4.17.21",
+    "@types/lodash": "^4.17.7",
+    "execa": "9.5.2"
+  },
+  "main": "index.ts",
+  "module": "index.ts",
+  "private": true,
+  "type": "module"
+}

@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitest/config';
 
-export default defineConfig((env) => {
+export default defineConfig((_env) => {
   return {
     test: {
       globals: true,
@@ -9,7 +9,6 @@ export default defineConfig((env) => {
       clearMocks: true,
       restoreMocks: true,
     },
-    define: {
-    },
+    define: {},
   };
 });
