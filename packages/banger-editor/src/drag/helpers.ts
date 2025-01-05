@@ -1,10 +1,6 @@
-import { Fragment, type PMNode, type Schema } from '../pm';
+import type { PMNode, Schema } from '../pm';
 import type { EditorState } from '../pm';
-import {
-  type EditorView,
-  // @ts-ignore they donot export
-  __serializeForClipboard,
-} from '../pm';
+import type { EditorView } from '../pm';
 
 export const ORDERED_LIST_TAG = 'OL';
 

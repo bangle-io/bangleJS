@@ -48,7 +48,8 @@
     "rules": {
       "recommended": true,
       "style": {
-        "useTemplate": "info"
+        "useTemplate": "info",
+        "useImportType": "error"
       },
       "suspicious": {
         "noExplicitAny": "warn"
@@ -57,10 +58,12 @@
         "useSortedClasses": "error"
       },
       "correctness": {
-        "noUnusedVariables": "warn"
+        "noUnusedVariables": "warn",
+        "noUnusedImports": "error"
       },
       "complexity": {
-        "noForEach": "off"
+        "noForEach": "off",
+        "useLiteralKeys": "off"
       }
     }
   },

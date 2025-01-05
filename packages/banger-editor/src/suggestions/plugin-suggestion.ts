@@ -5,7 +5,6 @@ import {
   Plugin,
   PluginKey,
   Selection,
-  TextSelection,
 } from '../pm';
 
 import type { Logger } from '../common';

@@ -1,5 +1,4 @@
 import type { PackageJSON } from '@manypkg/tools';
-import { sortObject } from './common';
 
 export function formatPackageJson(pkg: Record<string, any>): PackageJSON {
   const STANDARD_FIELD_ORDER = [

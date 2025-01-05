@@ -200,8 +200,8 @@ describe('collection API', () => {
 
       const { markdown } = resolve([collectionA, collectionB]);
 
-      expect(markdown.nodes?.paragraph).toBeDefined();
-      expect(markdown.marks?.bold).toBeDefined();
+      expect(markdown.nodes?.['paragraph']).toBeDefined();
+      expect(markdown.marks?.['bold']).toBeDefined();
     });
   });
 
@@ -356,10 +356,10 @@ describe('collection API - complex markdown merging', () => {
     });
 
     const { markdown } = resolve([collectionA, collectionB]);
-    expect(markdown.nodes?.paragraph).toBeDefined();
-    expect(markdown.nodes?.heading).toBeDefined();
-    expect(markdown.marks?.bold).toBeDefined();
-    expect(markdown.marks?.italic).toBeDefined();
+    expect(markdown.nodes?.['paragraph']).toBeDefined();
+    expect(markdown.nodes?.['heading']).toBeDefined();
+    expect(markdown.marks?.['bold']).toBeDefined();
+    expect(markdown.marks?.['italic']).toBeDefined();
   });
 
   it('handles undefined markdown configs gracefully', () => {
@@ -380,7 +380,7 @@ describe('collection API - complex markdown merging', () => {
     });
 
     const { markdown } = resolve([collectionA, collectionB]);
-    expect(markdown.nodes?.paragraph).toBeDefined();
+    expect(markdown.nodes?.['paragraph']).toBeDefined();
     expect(markdown.marks).toEqual({});
   });
 });

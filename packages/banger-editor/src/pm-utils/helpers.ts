@@ -474,7 +474,7 @@ export function getMarkType(schema: Schema, name: string): MarkType {
 }
 
 export const defaultGetParagraphNodeType = (schema: Schema): NodeType => {
-  const nodeType = schema.nodes.paragraph;
+  const nodeType = schema.nodes['paragraph'];
   if (!nodeType) {
     throw new Error('Paragraph node type not found in schema');
   }

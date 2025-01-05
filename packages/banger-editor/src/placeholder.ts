@@ -1,4 +1,4 @@
-import { CollectionType, collection } from './common/collection';
+import { collection } from './common/collection';
 import type { EditorState } from './pm';
 import { Plugin, PluginKey } from './pm';
 import { Decoration, DecorationSet } from './pm';

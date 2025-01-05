@@ -111,11 +111,11 @@ export function setupHeading(userConfig?: HeadingConfig) {
         };
       }),
       toDOM: (node: PMNode) => {
-        const result: any = [`h${node.attrs.level}`, {}, 0];
+        const result: any = [`h${node.attrs['level']}`, {}, 0];
 
-        if (node.attrs.collapseContent) {
+        if (node.attrs['collapseContent']) {
           result[1]['data-bangle-attrs'] = JSON.stringify({
-            collapseContent: node.attrs.collapseContent,
+            collapseContent: node.attrs['collapseContent'],
           });
           result[1].class = 'bangle-heading-collapsed';
         }
@@ -259,7 +259,7 @@ function isHeadingActive(config: RequiredConfig) {
     if (level == null) {
       return true;
     }
-    return node.attrs.level === level;
+    return node.attrs['level'] === level;
   };
 }
 
@@ -269,7 +269,7 @@ function markdown(config: RequiredConfig): CollectionType['markdown'] {
     nodes: {
       [config.name]: {
         toMarkdown(state, node: PMNode) {
-          state.write(`${state.repeat('#', node.attrs.level)} `);
+          state.write(`${state.repeat('#', node.attrs['level'])} `);
           state.renderInline(node);
           state.closeBlock(node);
         },

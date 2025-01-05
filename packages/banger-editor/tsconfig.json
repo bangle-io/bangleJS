@@ -1,7 +1,7 @@
 {
   "extends": "tsconfig/library.json",
   "include": [
-    "."
+    "${configDir}/src/**/*"
   ],
   "exclude": [
     "dist",

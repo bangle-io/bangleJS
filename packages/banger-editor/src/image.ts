@@ -2,7 +2,7 @@ import { type CollectionType, collection } from './common';
 import { type Command, NodeSelection, Plugin, PluginKey } from './pm';
 import { InputRule, inputRules } from './pm';
 import type { NodeSpec, NodeType, PMNode } from './pm';
-import type { EditorProps, EditorView } from './pm';
+import type { EditorView } from './pm';
 import { type PluginContext, getNodeType, safeInsert } from './pm-utils';
 
 export type ImageConfig = {
@@ -376,10 +376,10 @@ function markdown(config: RequiredConfig): CollectionType['markdown'] {
     nodes: {
       [name]: {
         toMarkdown: (state, node) => {
-          const text = state.esc(node.attrs.alt || '');
+          const text = state.esc(node.attrs['alt'] || '');
           const url =
-            state.esc(node.attrs.src) +
-            (node.attrs.title ? ` ${quote(node.attrs.title)}` : '');
+            state.esc(node.attrs['src']) +
+            (node.attrs['title'] ? ` ${quote(node.attrs['title'])}` : '');
 
           state.write(`![${text}](${url})`);
         },
