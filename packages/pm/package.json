@@ -27,9 +27,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./src/index.ts",
   "files": [
     "dist",
     "src"
@@ -78,82 +76,22 @@
     "prosemirror-view": "*"
   },
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
-    },
-    "./commands": {
-      "types": "./dist/commands.d.ts",
-      "import": "./dist/commands.js",
-      "default": "./dist/commands.js"
-    },
-    "./dropcursor": {
-      "types": "./dist/dropcursor.d.ts",
-      "import": "./dist/dropcursor.js",
-      "default": "./dist/dropcursor.js"
-    },
-    "./flat-list": {
-      "types": "./dist/flat-list.d.ts",
-      "import": "./dist/flat-list.js",
-      "default": "./dist/flat-list.js"
-    },
-    "./gapcursor": {
-      "types": "./dist/gapcursor.d.ts",
-      "import": "./dist/gapcursor.js",
-      "default": "./dist/gapcursor.js"
-    },
-    "./history": {
-      "types": "./dist/history.d.ts",
-      "import": "./dist/history.js",
-      "default": "./dist/history.js"
-    },
-    "./inputrules": {
-      "types": "./dist/inputrules.d.ts",
-      "import": "./dist/inputrules.js",
-      "default": "./dist/inputrules.js"
-    },
-    "./keymap": {
-      "types": "./dist/keymap.d.ts",
-      "import": "./dist/keymap.js",
-      "default": "./dist/keymap.js"
-    },
-    "./kushan": {
-      "types": "./dist/kushan.d.ts",
-      "import": "./dist/kushan.js",
-      "default": "./dist/kushan.js"
-    },
-    "./model": {
-      "types": "./dist/model.d.ts",
-      "import": "./dist/model.js",
-      "default": "./dist/model.js"
-    },
-    "./orderedmap": {
-      "types": "./dist/orderedmap.d.ts",
-      "import": "./dist/orderedmap.js",
-      "default": "./dist/orderedmap.js"
-    },
+    ".": "./src/index.ts",
+    "./commands": "./src/commands/index.ts",
+    "./dropcursor": "./src/dropcursor/index.ts",
+    "./flat-list": "./src/flat-list/index.ts",
+    "./gapcursor": "./src/gapcursor/index.ts",
+    "./history": "./src/history/index.ts",
+    "./inputrules": "./src/inputrules/index.ts",
+    "./keymap": "./src/keymap/index.ts",
+    "./kushan": "./src/kushan.ts",
+    "./model": "./src/model/index.ts",
+    "./orderedmap": "./src/orderedmap/index.ts",
     "./package.json": "./package.json",
-    "./schema-basic": {
-      "types": "./dist/schema-basic.d.ts",
-      "import": "./dist/schema-basic.js",
-      "default": "./dist/schema-basic.js"
-    },
-    "./state": {
-      "types": "./dist/state.d.ts",
-      "import": "./dist/state.js",
-      "default": "./dist/state.js"
-    },
-    "./transform": {
-      "types": "./dist/transform.d.ts",
-      "import": "./dist/transform.js",
-      "default": "./dist/transform.js"
-    },
-    "./view": {
-      "types": "./dist/view.d.ts",
-      "import": "./dist/view.js",
-      "default": "./dist/view.js"
-    }
+    "./schema-basic": "./src/schema-basic/index.ts",
+    "./state": "./src/state/index.ts",
+    "./transform": "./src/transform/index.ts",
+    "./view": "./src/view/index.ts"
   },
   "banglePackageConfig": {
     "env": "universal",
@@ -200,54 +138,5 @@
       "optional": false
     }
   },
-  "sideEffects": false,
-  "typesVersions": {
-    "*": {
-      ".": [
-        "./dist/index.d.ts"
-      ],
-      "commands": [
-        "./dist/commands.d.ts"
-      ],
-      "dropcursor": [
-        "./dist/dropcursor.d.ts"
-      ],
-      "flat-list": [
-        "./dist/flat-list.d.ts"
-      ],
-      "gapcursor": [
-        "./dist/gapcursor.d.ts"
-      ],
-      "history": [
-        "./dist/history.d.ts"
-      ],
-      "inputrules": [
-        "./dist/inputrules.d.ts"
-      ],
-      "keymap": [
-        "./dist/keymap.d.ts"
-      ],
-      "kushan": [
-        "./dist/kushan.d.ts"
-      ],
-      "model": [
-        "./dist/model.d.ts"
-      ],
-      "orderedmap": [
-        "./dist/orderedmap.d.ts"
-      ],
-      "schema-basic": [
-        "./dist/schema-basic.d.ts"
-      ],
-      "state": [
-        "./dist/state.d.ts"
-      ],
-      "transform": [
-        "./dist/transform.d.ts"
-      ],
-      "view": [
-        "./dist/view.d.ts"
-      ]
-    }
-  }
+  "sideEffects": false
 }
