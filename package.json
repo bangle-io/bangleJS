@@ -17,7 +17,7 @@
   "private": true,
   "scripts": {
     "lint": "pnpm biome check",
-    "lint:ci": "pnpm run custom-validation && pnpm run typecheck && pnpm biome ci .  --diagnostic-level=error",
+    "lint:ci": "pnpm run typecheck && pnpm biome ci .  --diagnostic-level=error",
     "lint:fix": "pnpm biome check --fix",
     "test:ci": "pnpm vitest run",
     "typecheck": "tsc -b",

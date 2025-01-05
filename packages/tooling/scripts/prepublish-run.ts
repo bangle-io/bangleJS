@@ -1,9 +1,9 @@
 import {
+  buildDistExportMap,
   copyReadMe,
   currentPublishingPkgName,
   execa,
   findRoot,
-  buildDistExportMap,
 } from '@bangle.dev/packager';
 import fs from 'fs-extra';
 

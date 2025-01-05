@@ -1,6 +1,6 @@
+import { findRoot, setVersion } from '@bangle.dev/packager';
 import { hideBin } from 'yargs/helpers';
 import yargs from 'yargs/yargs';
-import { setVersion, findRoot } from '@bangle.dev/packager';
 
 interface CliOptions {
   version: string;
