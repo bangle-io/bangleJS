@@ -12,6 +12,7 @@ export * from 'prosemirror-view';
 export {
   nodes as schemaBasicNodes,
   marks as schemaBasicMarks,
+  schema as schemaBasic,
 } from 'prosemirror-schema-basic';
 export { Plugin as PMPlugin } from 'prosemirror-state';
 export { Selection as PMSelection } from 'prosemirror-state';
