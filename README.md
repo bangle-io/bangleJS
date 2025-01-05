@@ -1,31 +1,29 @@
+## Banger Editor: ProseMirror Made Easy
 
+Banger Editor is a collection of ProseMirror editing components, designed for speed and efficiency.
 
-## Banger Editor: Build Powerful Editing Experiences with ProseMirror
+**Why Banger Editor?**
 
-Banger Editor is a collection of ProseMirror modules designed to help you build rich text editors quickly and efficiently.
+*   :battery: **Batteries Included:**  Everything you need to get started with ProseMirror.
+*   :spider_web: **Framework Agnostic:**  Vanilla JS at its core, but works great with React. Vue support coming soon!
+*   :+1: **Pure ProseMirror:**  No extra abstractions, just pure ProseMirror. Compatible with libraries like `tiptap`, `milkdown`, and `novel`.
+*   :hammer_and_wrench: **Headless & Customizable:** Use our `shadcn/ui`-like components or build your own.
 
-- :battery: **Batteries Included:** Get started quickly with a comprehensive set of Prosemirror packages.
-- :spider_web: **Framework Agnostic:** Built with vanilla JS, but plays nicely with React. Vue support is on the roadmap!
-- :+1: **Pure ProseMirror:** No abstractions, just pure ProseMirror power. Compatible with other ProseMirror libraries like `tiptap`, `milkdown`, and `novel`.
-- :hammer_and_wrench: **Headless and Customizable:** Use our shadcn/ui-like components as a starting point or build your own.
+**Getting Started**
 
-
-## Getting started
-
-
-```
+```bash
 npm install banger-editor
 ```
 
 > [!NOTE]
-> Example Repo: https://github.com/kepta/banger-vite-react-starter
+> Example Repo: [banger-vite-react-starter](https://github.com/kepta/banger-vite-react-starter)
 
+**Peer Dependencies**
 
-**Peer dependencies** As you can see Banger is not traditional Prosemirror wrapper library. It expects you to be familiar with prosemirror and its packages and use them directly. It expects some of the `prosemirror-*` packages to be installed in your project.
+Banger Editor uses ProseMirror packages directly. You'll need to install the ones you need.
 
-If you are starting blank, I recommend installing all the following `prosemirror-*` packages:
+**New to ProseMirror? Install these:**
 
-```sh
+```bash
 npm install orderedmap prosemirror-commands prosemirror-dropcursor prosemirror-flat-list prosemirror-gapcursor prosemirror-history prosemirror-inputrules prosemirror-keymap prosemirror-model prosemirror-schema-basic prosemirror-state prosemirror-transform prosemirror-view
 ```
-
