@@ -1,20 +1,13 @@
 
 
-## What is Banger Editor ?
+## Banger Editor: Build Powerful Editing Experiences with ProseMirror
 
-Banger Editor is a collection of ProseMirror code for building powerful editing experiences.
+Banger Editor is a collection of ProseMirror modules designed to help you build rich text editors quickly and efficiently.
 
-- :battery: **Batteries included**\
-We expose plenty of Prosemirror packages to help you get started with your Editor.
-
-- **Vanilla JS**\
-Banger is written in a framework agnostic way, so that you can focus on building the editor and not learning a new framework. That said, we have support for React and I have plans to add Vue support in the coming months.
-
-- **No abstraction over Prosemirror**\
-Banger is a collection of prosemirror packages, it works alongside prosemirror and not abstracting over it. Because of this, you can use it with any other framework Prosemirror abstraction like `tiptap`, `milkdown`, `novel` etc.
-
-- **Works with React or any other framework**\
-Banger is headless and provides you shadcn/ui like components that you can copy paste in your project.
+- :battery: **Batteries Included:** Get started quickly with a comprehensive set of Prosemirror packages.
+- :spider_web: **Framework Agnostic:** Built with vanilla JS, but plays nicely with React. Vue support is on the roadmap!
+- :+1: **Pure ProseMirror:** No abstractions, just pure ProseMirror power. Compatible with other ProseMirror libraries like `tiptap`, `milkdown`, and `novel`.
+- :hammer_and_wrench: **Headless and Customizable:** Use our shadcn/ui-like components as a starting point or build your own.
 
 
 ## Getting started
