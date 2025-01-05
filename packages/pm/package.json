@@ -91,6 +91,7 @@
     "./package.json": "./package.json",
     "./schema-basic": "./src/schema-basic/index.ts",
     "./state": "./src/state/index.ts",
+    "./test-builder": "./src/test-builder/index.ts",
     "./transform": "./src/transform/index.ts",
     "./view": "./src/view/index.ts"
   },
