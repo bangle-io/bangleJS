@@ -27,7 +27,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./src/index.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "src"
@@ -61,7 +63,12 @@
     "@bangle.dev/packager": "workspace:*"
   },
   "exports": {
-    ".": "./src/index.ts",
+    ".": {
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
     "./package.json": "./package.json"
   },
   "sideEffects": false

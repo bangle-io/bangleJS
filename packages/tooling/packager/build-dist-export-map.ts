@@ -67,6 +67,7 @@ export async function buildDistExportMap(
       set(exportMap, [exportKey, 'types'], `./${dirName}/${filePath}`);
     } else if (isImport(filePath)) {
       set(exportMap, [exportKey, 'import'], `./${dirName}/${filePath}`);
+      set(exportMap, [exportKey, 'default'], `./${dirName}/${filePath}`);
     } else if (isRequire(filePath)) {
       set(exportMap, [exportKey, 'require'], `./${dirName}/${filePath}`);
     }
@@ -79,8 +80,8 @@ export async function buildDistExportMap(
   });
 
   const result = {
-    main: `./${dirName}/index.js`,
-    module: `./${dirName}/index.mjs`,
+    main: `./${dirName}/index.cjs`,
+    module: `./${dirName}/index.js`,
     types: `./${dirName}/index.d.ts`,
     exports: exportMap,
   };

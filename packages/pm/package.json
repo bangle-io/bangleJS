@@ -27,7 +27,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "main": "./src/index.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "src"
@@ -76,22 +78,97 @@
     "prosemirror-view": "*"
   },
   "exports": {
-    ".": "./src/index.ts",
-    "./commands": "./src/commands/index.ts",
-    "./dropcursor": "./src/dropcursor/index.ts",
-    "./flat-list": "./src/flat-list/index.ts",
-    "./gapcursor": "./src/gapcursor/index.ts",
-    "./history": "./src/history/index.ts",
-    "./inputrules": "./src/inputrules/index.ts",
-    "./keymap": "./src/keymap/index.ts",
-    "./kushan": "./src/kushan.ts",
-    "./model": "./src/model/index.ts",
-    "./orderedmap": "./src/orderedmap/index.ts",
+    ".": {
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./commands": {
+      "require": "./dist/commands.cjs",
+      "types": "./dist/commands.d.ts",
+      "import": "./dist/commands.js",
+      "default": "./dist/commands.js"
+    },
+    "./dropcursor": {
+      "require": "./dist/dropcursor.cjs",
+      "types": "./dist/dropcursor.d.ts",
+      "import": "./dist/dropcursor.js",
+      "default": "./dist/dropcursor.js"
+    },
+    "./flat-list": {
+      "require": "./dist/flat-list.cjs",
+      "types": "./dist/flat-list.d.ts",
+      "import": "./dist/flat-list.js",
+      "default": "./dist/flat-list.js"
+    },
+    "./gapcursor": {
+      "require": "./dist/gapcursor.cjs",
+      "types": "./dist/gapcursor.d.ts",
+      "import": "./dist/gapcursor.js",
+      "default": "./dist/gapcursor.js"
+    },
+    "./history": {
+      "require": "./dist/history.cjs",
+      "types": "./dist/history.d.ts",
+      "import": "./dist/history.js",
+      "default": "./dist/history.js"
+    },
+    "./inputrules": {
+      "require": "./dist/inputrules.cjs",
+      "types": "./dist/inputrules.d.ts",
+      "import": "./dist/inputrules.js",
+      "default": "./dist/inputrules.js"
+    },
+    "./keymap": {
+      "require": "./dist/keymap.cjs",
+      "types": "./dist/keymap.d.ts",
+      "import": "./dist/keymap.js",
+      "default": "./dist/keymap.js"
+    },
+    "./kushan": {
+      "require": "./dist/kushan.cjs",
+      "types": "./dist/kushan.d.ts",
+      "import": "./dist/kushan.js",
+      "default": "./dist/kushan.js"
+    },
+    "./model": {
+      "require": "./dist/model.cjs",
+      "types": "./dist/model.d.ts",
+      "import": "./dist/model.js",
+      "default": "./dist/model.js"
+    },
+    "./orderedmap": {
+      "require": "./dist/orderedmap.cjs",
+      "types": "./dist/orderedmap.d.ts",
+      "import": "./dist/orderedmap.js",
+      "default": "./dist/orderedmap.js"
+    },
     "./package.json": "./package.json",
-    "./schema-basic": "./src/schema-basic/index.ts",
-    "./state": "./src/state/index.ts",
-    "./transform": "./src/transform/index.ts",
-    "./view": "./src/view/index.ts"
+    "./schema-basic": {
+      "require": "./dist/schema-basic.cjs",
+      "types": "./dist/schema-basic.d.ts",
+      "import": "./dist/schema-basic.js",
+      "default": "./dist/schema-basic.js"
+    },
+    "./state": {
+      "require": "./dist/state.cjs",
+      "types": "./dist/state.d.ts",
+      "import": "./dist/state.js",
+      "default": "./dist/state.js"
+    },
+    "./transform": {
+      "require": "./dist/transform.cjs",
+      "types": "./dist/transform.d.ts",
+      "import": "./dist/transform.js",
+      "default": "./dist/transform.js"
+    },
+    "./view": {
+      "require": "./dist/view.cjs",
+      "types": "./dist/view.d.ts",
+      "import": "./dist/view.js",
+      "default": "./dist/view.js"
+    }
   },
   "banglePackageConfig": {
     "env": "universal",
