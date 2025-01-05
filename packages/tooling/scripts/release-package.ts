@@ -27,8 +27,8 @@
  */
 
 import { execSync } from 'node:child_process';
-import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
+import yargs from 'yargs/yargs';
 import { Packager } from '../packager';
 
 interface CliOptions {
@@ -56,7 +56,8 @@ function parseCli(): CliOptions {
     .option('publish', {
       type: 'boolean',
       default: false,
-      describe: 'Publish packages to npm. If not set, only the version bump is performed.',
+      describe:
+        'Publish packages to npm. If not set, only the version bump is performed.',
     })
     .option('otp', {
       type: 'string',
@@ -90,7 +91,9 @@ function parseCli(): CliOptions {
 
 async function main() {
   const { version, alpha, publish, otp, dry } = parseCli();
-  console.log(`\nStarting release process for version ${version}${alpha ? ' (alpha)' : ''}${dry ? ' [dry mode]' : ''}\n`);
+  console.log(
+    `\nStarting release process for version ${version}${alpha ? ' (alpha)' : ''}${dry ? ' [dry mode]' : ''}\n`,
+  );
 
   // Initialize the packager
   const packager = new Packager({ dry });
@@ -112,7 +115,9 @@ async function main() {
 
   // 2. Publish all non-private packages
   const tagFlag = alpha ? '--tag alpha' : '--tag latest';
-  console.log(`> Publishing packages to npm with ${alpha ? 'alpha' : 'latest'} tag...\n`);
+  console.log(
+    `> Publishing packages to npm with ${alpha ? 'alpha' : 'latest'} tag...\n`,
+  );
 
   for (const pkg of packager.packages) {
     if (pkg.packageJson.private) {
@@ -129,7 +134,9 @@ async function main() {
   }
 
   console.log('\n> Publish process complete!\n');
-  console.log(`Visit GitHub to finalize release notes under tag v${version}.\n`);
+  console.log(
+    `Visit GitHub to finalize release notes under tag v${version}.\n`,
+  );
 }
 
 main().catch((err) => {

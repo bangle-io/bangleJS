@@ -1,10 +1,7 @@
 import { execSync } from 'node:child_process';
 import path from 'node:path';
 import { findRootSync } from '@manypkg/find-root';
-import {
-  type Package,
-
-} from '@manypkg/get-packages';
+import type { Package } from '@manypkg/get-packages';
 import type { PackageJSON } from '@manypkg/tools';
 import fs from 'fs-extra';
 import { globby } from 'globby';
@@ -97,7 +94,7 @@ class Packager {
       rootDir: this.root.rootDir,
       dry: config.dry ?? false, // default is false
       ...config,
-    } 
+    };
   }
 
   public async init(): Promise<void> {
@@ -128,9 +125,11 @@ class Packager {
   private validatePath(filePath: string): void {
     const normalizedPath = path.normalize(filePath);
     const resolvedPath = path.resolve(this.config.rootDir, normalizedPath);
-    
+
     if (!resolvedPath.startsWith(this.config.rootDir)) {
-      throw new Error(`Invalid path: ${filePath} attempts to access outside of root directory`);
+      throw new Error(
+        `Invalid path: ${filePath} attempts to access outside of root directory`,
+      );
     }
   }
 
@@ -239,6 +238,11 @@ class Packager {
     }
 
     for (const pkg of this.packages) {
+      if (pkg.packageJson.private) {
+        console.log(`Skipping private package: ${pkg.packageJson.name}`);
+        continue;
+      }
+
       const packageJsonPath = path.join(pkg.dir, 'package.json');
       const packageJson = await this.readFileJson(packageJsonPath);
       packageJson.version = version;
@@ -272,10 +276,11 @@ class Packager {
             'Error committing or tagging the version:',
             error.message,
           );
-          throw new Error(`Failed to commit version ${version}: ${error.message}`);
-        } else {
-          throw error;
+          throw new Error(
+            `Failed to commit version ${version}: ${error.message}`,
+          );
         }
+        throw error;
       }
     } else if (this.config.dry) {
       console.log(
@@ -373,15 +378,13 @@ class Packager {
     packageName: string,
     config?: PublishConfig,
   ): Promise<void> {
-
-
     this.ensureInitialized();
 
     const pkg = this.findPackage(packageName);
 
     if (pkg.packageJson.private) {
-        console.log(`Skipping private package: ${packageName}`)
-        return
+      console.log(`Skipping private package: ${packageName}`);
+      return;
     }
     const packageJsonPath = path.join(pkg.dir, 'package.json');
 
@@ -465,7 +468,9 @@ class Packager {
   /**
    * Reverts the package.json dependencies back to workspace:*.
    */
-  private async revertPackageJsonToWorkspace(packageName: string): Promise<void> {
+  private async revertPackageJsonToWorkspace(
+    packageName: string,
+  ): Promise<void> {
     const pkg = this.findPackage(packageName);
     const packageJsonPath = path.join(pkg.dir, 'package.json');
     const packageJson = await this.readFileJson(packageJsonPath);
