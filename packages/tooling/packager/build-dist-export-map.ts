@@ -3,7 +3,11 @@ import type { Package } from '@manypkg/tools';
 import fs from 'fs-extra';
 import { globby } from 'globby';
 import set from 'lodash/set';
-import { type ExportMapResult, sortObject } from './common';
+import {
+  type ExportMapResult,
+  removeUndefinedValues,
+  sortObject,
+} from './common';
 import { formatPackageJson } from './format-package-json';
 
 /**
@@ -85,6 +89,23 @@ export async function buildDistExportMap(
     return a.localeCompare(b);
   });
 
+  exportMap = Object.fromEntries(
+    Object.entries(exportMap).map(([key, value]) => {
+      if (typeof value === 'object') {
+        return [
+          key,
+          removeUndefinedValues({
+            // The order of these is important https://publint.dev/rules#exports_types_should_be_first
+            types: value.types,
+            import: value.import,
+            require: value.require,
+            default: value.default,
+          }),
+        ];
+      }
+      return [key, value];
+    }),
+  );
   // Sort typesVersions
   typesVersions['*'] = sortObject(
     typesVersions['*'] as Record<string, string[]>,

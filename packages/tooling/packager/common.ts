@@ -24,3 +24,9 @@ export function sortObject<T extends object>(
     Object.entries(obj).sort(([keyA], [keyB]) => compareFunction(keyA, keyB)),
   ) as T;
 }
+
+export function removeUndefinedValues(obj: Record<string, any>) {
+  return Object.fromEntries(
+    Object.entries(obj).filter(([_, value]) => value !== undefined),
+  );
+}
