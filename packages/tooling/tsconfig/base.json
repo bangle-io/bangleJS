@@ -24,7 +24,7 @@
     "emitDeclarationOnly": true,
     "noImplicitReturns": true,
     "moduleDetection": "force",
-    "noPropertyAccessFromIndexSignature": true,
+    "noPropertyAccessFromIndexSignature": false,
     "noUncheckedIndexedAccess": true,
     "verbatimModuleSyntax": true,
     "noUnusedLocals": false,
