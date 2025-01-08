@@ -146,7 +146,7 @@ function markdown(config: RequiredConfig): CollectionType['markdown'] {
     nodes: {
       [name]: {
         toMarkdown: (state, node) => {
-          state.write(node.attrs['markup'] || '---');
+          state.write(node.attrs.markup || '---');
           state.closeBlock(node);
         },
         parseMarkdown: {

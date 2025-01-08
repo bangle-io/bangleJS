@@ -57,7 +57,7 @@ export function setupCodeBlock(userConfig?: CodeBlockConfig) {
       ],
       toDOM: (node) => [
         'pre',
-        { 'data-language': node.attrs['language'] },
+        { 'data-language': node.attrs.language },
         ['code', 0],
       ],
     },
@@ -177,7 +177,7 @@ function markdown(config: RequiredConfig): CollectionType['markdown'] {
     nodes: {
       [name]: {
         toMarkdown(state, node) {
-          state.write(`\`\`\`${node.attrs['language'] || ''}\n`);
+          state.write(`\`\`\`${node.attrs.language || ''}\n`);
           state.text(node.textContent, false);
           state.ensureNewLine();
           state.write('```');

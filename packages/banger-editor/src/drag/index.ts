@@ -48,7 +48,7 @@ export function setupDragNode(config: DragConfig) {
     isListItem: defaultIsListItem,
     isDoc: defaultIsDoc,
     createOrderedListWithNode: (schema, droppedNode) =>
-      schema.nodes['list']?.createAndFill(null, droppedNode) || null,
+      schema.nodes.list?.createAndFill(null, droppedNode) || null,
     dragHandleClassName: 'drag-handle',
     dragHandleHideClassName: 'hidden',
     editorContentClassName: 'ProseMirror',

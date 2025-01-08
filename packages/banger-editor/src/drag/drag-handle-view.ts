@@ -125,7 +125,7 @@ export function createDragHandleViewPlugin(
 
       dragHandleElement = handleBySelector ?? createDragHandle();
       dragHandleElement.draggable = true;
-      dragHandleElement.dataset['dragHandle'] = '';
+      dragHandleElement.dataset.dragHandle = '';
       dragHandleElement.classList.add(options.dragHandleClassName);
 
       // Attach DOM listeners

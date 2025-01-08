@@ -376,10 +376,10 @@ function markdown(config: RequiredConfig): CollectionType['markdown'] {
     nodes: {
       [name]: {
         toMarkdown: (state, node) => {
-          const text = state.esc(node.attrs['alt'] || '');
+          const text = state.esc(node.attrs.alt || '');
           const url =
-            state.esc(node.attrs['src']) +
-            (node.attrs['title'] ? ` ${quote(node.attrs['title'])}` : '');
+            state.esc(node.attrs.src) +
+            (node.attrs.title ? ` ${quote(node.attrs.title)}` : '');
 
           state.write(`![${text}](${url})`);
         },
