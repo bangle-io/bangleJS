@@ -351,14 +351,21 @@ function markdown(config: RequiredConfig): CollectionType['markdown'] {
             getAttrs: (tok) => {
               const kind = tok.attrGet('data-bangle-list-kind');
               if (kind === LIST_KIND.TASK) {
-                const isChecked =
+                const checked =
                   tok.attrGet('data-bangle-task-checked') === 'true';
-                return { kind: LIST_KIND.TASK, checked: isChecked };
+                return { kind: LIST_KIND.TASK, checked };
               }
-              if (kind === 'ordered') {
-                return { kind: LIST_KIND.ORDERED };
-              }
+              if (kind === LIST_KIND.ORDERED) {
+                const order = Number.parseInt(
+                  tok.attrGet('data-bangle-list-order') || '',
+                  10,
+                );
 
+                return {
+                  kind: LIST_KIND.ORDERED,
+                  order: Number.isNaN(order) ? null : order,
+                };
+              }
               return { kind: LIST_KIND.BULLET };
             },
           },
@@ -383,7 +390,7 @@ function flatListToMarkdown(
   let marker = '-';
   const attrs = readListAttrs(node);
   if (attrs?.kind === LIST_KIND.ORDERED) {
-    marker = '1.';
+    marker = `${attrs.order}.`;
   } else if (attrs?.kind === LIST_KIND.TASK) {
     marker = attrs.checked ? '- [x]' : '- [ ]';
   }

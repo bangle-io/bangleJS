@@ -83,6 +83,53 @@ export const listMarkdownPlugin: PluginWithOptions<
     }
     return originalRenderToken(tokens, idx, options);
   };
+
+  md.core.ruler.after(
+    'bangle-task-lists',
+    'bangle-ordered-list-order',
+    (state) => {
+      const tokens = state.tokens;
+      const orderStack: number[] = [];
+
+      for (const token of tokens) {
+        switch (token.type) {
+          case 'ordered_list_open': {
+            let start: number;
+            const startAttr = token.attrGet('start');
+            if (startAttr != null) {
+              start = Number.parseInt(startAttr, 10);
+            } else if (token.markup) {
+              // token.markup is expected to be something like "2." or "2)"
+              const match = token.markup.match(/^(\d+)/);
+              // biome-ignore lint/style/noNonNullAssertion: <explanation>
+              start = match ? Number.parseInt(match[1]!, 10) : 1;
+            } else {
+              start = 1;
+            }
+            orderStack.push(start);
+            token.attrSet('data-bangle-list-kind', 'ordered');
+            break;
+          }
+          case 'ordered_list_close': {
+            orderStack.pop();
+            break;
+          }
+          case 'list_item_open': {
+            const currentOrder = orderStack[orderStack.length - 1];
+            if (orderStack.length > 0 && currentOrder !== undefined) {
+              token.attrSet('data-bangle-list-order', String(currentOrder));
+              orderStack[orderStack.length - 1] = currentOrder + 1;
+            }
+            break;
+          }
+          default:
+            break;
+        }
+      }
+
+      return false;
+    },
+  );
 };
 
 function isOrderedListOpen(token?: Token): boolean {

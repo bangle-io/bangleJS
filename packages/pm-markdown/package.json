@@ -48,7 +48,9 @@
     "prosemirror-model": "^1.24.1",
     "tsconfig": "workspace:*",
     "tsup": "^8.3.5",
-    "tsup-config": "workspace:*"
+    "tsup-config": "workspace:*",
+    "prosemirror-test-builder": "^1.1.1",
+    "banger-editor": "workspace:*"
   },
   "peerDependencies": {
     "prosemirror-markdown": "*"

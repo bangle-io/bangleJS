@@ -5,4 +5,5 @@ export const defaultTokenizers = markdownIt('commonmark', {
   breaks: false,
 })
   // .enable('table')
+  .enable('strikethrough')
   .use(listMarkdownPlugin);
